@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\User;
 use App\Models\Printer;
 use App\Models\Type;
 use App\Models\Manifacture;
@@ -10,6 +10,7 @@ use App\Models\Place;
 use App\Models\Master;
 use App\Http\Requests\StorePrintersPostRequest as StorePrintersPostRequest;
 use Illuminate\HttpResponse;
+use App\Http\Requests;
 
 
 
@@ -47,6 +48,6 @@ class PrinterController extends Controller
 		$printer->auxiliary = $request->auxiliary;
 		$printer->save();
 
-		return redirect('/addprinter');
+		return redirect('/manager/addprinter');
 	}
 }

@@ -29,39 +29,52 @@ Route::get('/', function () {
 |
 */
 
-Route::group(array('prefix' => 'printer'), function()
-{
-	Route::get('show', 'PrinterController@index');
-});
 
-Route::group(array('prefix' => 'manager'), function()
-{
-	Route::get('add', 'TypeController@add');
-	Route::post('add', 'TypeController@store');
 
-	Route::get('addmanifacture', 'ManifactureController@add');
-	Route::post('addmanifacture', 'ManifactureController@store');
 
-	Route::group(array('prefix' => 'place'), function()
+
+//Route::group(['middleware' => ['web']], function () {
+//
+//});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+	Route::get('/home', 'HomeController@index');
+
+	Route::group(array('prefix' => 'printer'), function()
 	{
-		Route::get('add', 'PlaceController@add');
-		Route::post('add', 'PlaceController@store');
+		Route::get('show', 'PrinterController@index');
 	});
 
-	Route::group(array('prefix' => 'master'), function()
+	Route::group(array('prefix' => 'manager'), function()
 	{
-		Route::get('add', 'MasterController@add');
-		Route::post('add', 'MasterController@store');
+		Route::get('add', 'TypeController@add');
+		Route::post('add', 'TypeController@store');
+
+		Route::get('addmanifacture', 'ManifactureController@add');
+		Route::post('addmanifacture', 'ManifactureController@store');
+
+
+		Route::get('addprinter', 'PrinterController@add');
+		Route::post('addprinter', 'PrinterController@store');
+
+		Route::get('addcatridge', 'CatridgeController@add');
+		Route::post('addcatridge', 'CatridgeController@store');
+
+		Route::group(array('prefix' => 'place'), function()
+		{
+			Route::get('add', 'PlaceController@add');
+			Route::post('add', 'PlaceController@store');
+		});
+
+		Route::group(array('prefix' => 'master'), function()
+		{
+			Route::get('add', 'MasterController@add');
+			Route::post('add', 'MasterController@store');
+		});
+
 	});
 
 });
-
-
-
-Route::group(['middleware' => ['web']], function () {
-	Route::get('addprinter', 'PrinterController@add');
-	Route::post('addprinter', 'PrinterController@store');
-
-	Route::get('addcatridge', 'CatridgeController@add');
-	Route::post('addcatridge', 'CatridgeController@store');
-});
+//Route::get('/home', 'HomeController@index');

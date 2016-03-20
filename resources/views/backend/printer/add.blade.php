@@ -6,7 +6,7 @@
         {{--@include('common.errors')--}}
 
         <!-- New Task Form -->
-        <form action="/addprinter" method="POST" class="form-horizontal">
+        <form action="addprinter" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
             <!-- Task Name -->
@@ -103,5 +103,6 @@
             </div>
         </form>
     </div>
+
 
 @endsection

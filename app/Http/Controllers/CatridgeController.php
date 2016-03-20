@@ -11,6 +11,7 @@ use App\Http\Requests\CatridgesRequest as CatridgesRequest;
 
 class CatridgeController extends Controller
 {
+
     public function add()
 	{
 		$manifactures = Manifacture::all();
