@@ -6,8 +6,8 @@ use App\Models\Catridge;
 use App\Models\Manifacture;
 use App\Models\Type;
 use App\Models\Master;
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\CatridgesRequest as CatridgesRequest;
 
 class CatridgeController extends Controller
 {
@@ -24,7 +24,7 @@ class CatridgeController extends Controller
 		]);
 	}
 
-	public function store(Request $request)
+	public function store(CatridgesRequest $request)
 	{
 		$catridge = new Catridge;
 		$catridge->current_id = $request->current_id;

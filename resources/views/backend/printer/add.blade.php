@@ -14,7 +14,7 @@
                 <label for="current_id" class="col-sm-3 control-label">Инвертарный номер</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="current_id" id="current_id" class="form-control">
+                    <input type="text" name="current_id" id="current_id" class="form-control" required="required">
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                 <label for="model" class="col-sm-3 control-label">Модель</label>
 
                 <div class="col-sm-6">
-                    <input name="model" id="model" class="form-control">
+                    <input name="model" id="model" class="form-control" required="required">
                 </div>
             </div>
 
@@ -103,12 +103,5 @@
             </div>
         </form>
     </div>
-    @if (count($errors) > 0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
 
 @endsection

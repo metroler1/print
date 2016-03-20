@@ -9,11 +9,8 @@ use App\Models\Manifacture;
 use App\Models\Place;
 use App\Models\Master;
 use App\Http\Requests\StorePrintersPostRequest as StorePrintersPostRequest;
-use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
-//use App\Http\Requests;
-//use Illuminate\Validation\Validator;
-//use App\Http\Requests\StorePrintersPostRequest;
+
 
 
 
