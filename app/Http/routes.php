@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 
-
+//Route::get('/', function() {
+//	return redirect('login');
+//});
 
 /*
 |--------------------------------------------------------------------------
@@ -30,25 +32,29 @@ Route::get('/', function () {
 */
 
 
-
-
-
-//Route::group(['middleware' => ['web']], function () {
-//
-//});
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
-	Route::get('/home', 'HomeController@index');
+	Route::get('/', 'DashboardController@index');
+//	Route::get('/home', 'HomeController@index');
 
 	Route::group(array('prefix' => 'printer'), function()
 	{
 		Route::get('show', 'PrinterController@index');
+		Route::get('show/{id}', function(){
+			return view('backend.index');
+		});
 	});
-
+	Route::group(array('prefix' => 'catridge'), function()
+	{
+		Route::get('show', 'CatridgeController@index');
+	});
+//!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
 	{
+		Route::get('/', function() {
+			return view('backend.index');
+		});
+
 		Route::get('add', 'TypeController@add');
 		Route::post('add', 'TypeController@store');
 

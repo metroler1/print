@@ -11,6 +11,11 @@ use App\Http\Requests\CatridgesRequest as CatridgesRequest;
 
 class CatridgeController extends Controller
 {
+	public function index()
+	{
+		$catridges = Catridge::all();
+		return view('frontend.catridge.show', ['catridges' => $catridges]);
+	}
 
     public function add()
 	{
