@@ -44,4 +44,9 @@ class CatridgeController extends Controller
 
 		return redirect('/addcatridge');
 	}
+
+	public function move(Request $request, $id)
+	{
+
+	}
 }

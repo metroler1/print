@@ -9,6 +9,12 @@ $(document).ready(function() {
 			var id = $(e.target).parent().text();
 			var selectId = id[72] + id[73] + id[74] + id[75] + id[76] + id[77] + id[78] + id[79];
 
+			$.ajax({
+				url: 'printerajax',
+				type: 'POST',
+
+			});
+
 			console.log(selectId);
 			location.href = '#openModal';
 			e.preventDefault();

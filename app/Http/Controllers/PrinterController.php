@@ -50,4 +50,9 @@ class PrinterController extends Controller
 
 		return redirect('/manager/addprinter');
 	}
+
+	public function moveElementsAjax()
+	{
+
+	}
 }

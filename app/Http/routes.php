@@ -43,10 +43,12 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('show/{id}', function(){
 			return view('backend.index');
 		});
+		Route::post('printerajax', 'PrinterController@moveElementsAjax');
 	});
 	Route::group(array('prefix' => 'catridge'), function()
 	{
 		Route::get('show', 'CatridgeController@index');
+		Route::get('move', 'CatridgeController@index');
 	});
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()

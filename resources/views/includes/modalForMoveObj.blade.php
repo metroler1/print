@@ -7,7 +7,11 @@
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
-                ...
+                {!! Form::model($printers) !!}
+
+                {!! Form::text('current_id') !!}
+
+                {!! Form::close() !!}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
