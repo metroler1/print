@@ -14,7 +14,7 @@ class CatridgeController extends Controller
 	public function index()
 	{
 		$catridges = Catridge::all();
-		return view('frontend.catridge.show', ['catridges' => $catridges]);
+		return view('frontend.catridge.index', ['catridges' => $catridges]);
 	}
 
     public function add()
@@ -28,6 +28,16 @@ class CatridgeController extends Controller
 			'types' => $types,
 			'masters' => $masters
 		]);
+	}
+
+	public function show($id)
+	{
+
+		$catridges = Catridge::findOrFail($id);
+
+		return view('frontend.catridge.show', compact('catridges'));
+
+
 	}
 
 	public function store(CatridgesRequest $request)
@@ -45,8 +55,4 @@ class CatridgeController extends Controller
 		return redirect('/addcatridge');
 	}
 
-	public function move(Request $request, $id)
-	{
-
-	}
 }

@@ -9,7 +9,7 @@
             <div class="modal-body">
                 {!! Form::model($printers) !!}
 
-                {!! Form::text('current_id') !!}
+                {!! Form::text('type') !!}
 
                 {!! Form::close() !!}
             </div>

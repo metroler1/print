@@ -20,7 +20,7 @@ class PrinterController extends Controller
 	public function index()
 	{
 		$printer = Printer::all();
-		return view('frontend.printer.show', ['printer' => $printer]);
+		return view('frontend.printer.index', ['printer' => $printer]);
 	}
 
     public function add()
@@ -35,9 +35,18 @@ class PrinterController extends Controller
 											'masters' => $masters
 											]);
 	}
+	public function show($id)
+	{
+		$printeres = Printer::findOrFail($id);
+
+		return view('frontend.printer.show', compact('printeres'));
+
+	}
+
 	public function store(StorePrintersPostRequest $request)
 	{
 		$printer = new Printer;
+
 		$printer->current_id = $request->current_id;
 		$printer->manifacture = $request->manifacture;
 		$printer->model = $request->model;
@@ -48,11 +57,12 @@ class PrinterController extends Controller
 		$printer->auxiliary = $request->auxiliary;
 		$printer->save();
 
+//		if($request->ajax()){
+//			return response()->json();
+//		}
+
 		return redirect('/manager/addprinter');
 	}
 
-	public function moveElementsAjax()
-	{
 
-	}
 }

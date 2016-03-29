@@ -40,15 +40,15 @@ Route::group(['middleware' => 'web'], function () {
 	Route::group(array('prefix' => 'printer'), function()
 	{
 		Route::get('show', 'PrinterController@index');
-		Route::get('show/{id}', function(){
-			return view('backend.index');
-		});
-		Route::post('printerajax', 'PrinterController@moveElementsAjax');
+		Route::get('show/{id}', 'PrinterController@show');
+
+//		Route::post('printerajax', 'PrinterController@moveElementsAjax');
 	});
 	Route::group(array('prefix' => 'catridge'), function()
 	{
 		Route::get('show', 'CatridgeController@index');
-		Route::get('move', 'CatridgeController@index');
+		Route::get('show/{id}', 'CatridgeController@show');
+
 	});
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
