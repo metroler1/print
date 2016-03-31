@@ -41,6 +41,9 @@ Route::group(['middleware' => 'web'], function () {
 	{
 		Route::get('show', 'PrinterController@index');
 		Route::get('show/{id}', 'PrinterController@show');
+		Route::get('show/{id}/edit', 'PrinterController@edit');
+		Route::patch('show/{id}', 'PrinterController@update');
+
 
 //		Route::post('printerajax', 'PrinterController@moveElementsAjax');
 	});

@@ -43,6 +43,22 @@ class PrinterController extends Controller
 
 	}
 
+	public function edit($id)
+	{
+		$printeres = Printer::findOrFail($id);
+
+		return view('frontend.printer.edit', compact('printeres'));
+	}
+
+	public function update($id, StorePrintersPostRequest $request)
+	{
+		$printeres = Printer::findOrFail($id);
+
+		$printeres->update($request->all());
+
+		return redirect('printer/show');
+	}
+
 	public function store(StorePrintersPostRequest $request)
 	{
 		$printer = new Printer;

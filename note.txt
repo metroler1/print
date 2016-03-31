@@ -1,0 +1,2 @@
+need hidden the Master`s field from index area & show on unique page of object
+
