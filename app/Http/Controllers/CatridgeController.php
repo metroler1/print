@@ -40,6 +40,23 @@ class CatridgeController extends Controller
 
 	}
 
+	public function edit($id)
+	{
+		$catridges = Catridge::findOrFail($id);
+
+		return view('frontend.catridge.edit', compact('catridges'));
+	}
+
+	public function update($id, CatridgesRequest $request)
+	{
+		$catridges = Catridge::findOrFail($id);
+
+		$catridges->update($request->all());
+
+		return redirect('catridge/show');
+
+	}
+
 	public function store(CatridgesRequest $request)
 	{
 		$catridge = new Catridge;

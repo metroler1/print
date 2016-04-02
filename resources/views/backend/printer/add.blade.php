@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+@include('errors.list')
+
     <div class="panel-body">
         <!-- Display Validation Errors -->
         {{--@include('common.errors')--}}
