@@ -39,7 +39,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::group(array('prefix' => 'printer'), function()
 	{
-		Route::get('show', 'PrinterController@index');
+		Route::get('show/{sort?}', 'PrinterController@index');
 		Route::get('show/{id}', 'PrinterController@show');
 		Route::get('show/{id}/edit', 'PrinterController@edit');
 		Route::patch('show/{id}', 'PrinterController@update');
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'web'], function () {
 	});
 	Route::group(array('prefix' => 'catridge'), function()
 	{
-		Route::get('show', 'CatridgeController@index');
+		Route::get('show/{soft?}', 'CatridgeController@index');
 		Route::get('show/{id}', 'CatridgeController@show');
 		Route::get('show/{id}/edit', 'CatridgeController@edit');
 		Route::patch('show/{id}', 'CatridgeController@update');

@@ -14,4 +14,8 @@ class Printer extends Model
 //		return $this->HasMany('App\Type', 'printer_type', 'type');
 //
 //	}
+	public function scopePublished($query)
+	{
+		$query->where('published_at', '<=', Carbon::now());
+	}
 }

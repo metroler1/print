@@ -4,9 +4,29 @@
     <table class="table table-hover" id="tableShow">
         <tr>
             <td class="title">#</td>
-            <td class="title">Инв. Номер</td>
+            <td class="title">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Инв. Номер <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ action('PrinterController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
+                        <li><a href="{{ action('PrinterController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
+                    </ul>
+                </div>
+            </td>
             <td class="title">Имя</td> {{--manifacture + model--}}
-            <td class="title">Тип</td>
+            <td class="title">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Тип <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ action('PrinterController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
+                        <li><a href="{{ action('PrinterController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
+                    </ul>
+                </div>
+            </td>
             <td class="title">Офис/Кабинет/Сотрудник</td>
             <td class="title">Уст катридж</td>
             <td class="title">Мастер</td>
@@ -29,5 +49,5 @@
         @endforeach
     </table>
 @endsection
-@include('includes.table')
+{{--@include('includes.table')--}}
 @include('includes.modalForMoveObj')

@@ -17,7 +17,7 @@
     {!! Form::label('type', 'Тип') !!}
     {!! Form::text('type', null, ['class' => 'form-control']) !!}
 </div>
-
+d
 <div class="form-group">
     {!! Form::label('place', 'Местонахождения') !!}
     {!! Form::text('place', null, ['class' => 'form-control']) !!}

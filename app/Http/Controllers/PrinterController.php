@@ -11,15 +11,24 @@ use App\Models\Master;
 use App\Http\Requests\StorePrintersPostRequest as StorePrintersPostRequest;
 use Illuminate\HttpResponse;
 use App\Http\Requests;
-
-
+use Illuminate\Support\Facades\Auth;
 
 
 class PrinterController extends Controller
 {
-	public function index()
+	public function index($sort = null)
 	{
-		$printer = Printer::all();
+		if (!is_null($sort))
+		{
+			$printer = Printer::orderBy('type', $sort)->get();
+
+		}else{
+			$printer = Printer::orderBy('type', 'asc')->get();
+		}
+
+
+//		$printer = Printer::all();
+
 		return view('frontend.printer.index', ['printer' => $printer]);
 	}
 

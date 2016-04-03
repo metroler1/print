@@ -11,9 +11,17 @@ use App\Http\Requests\CatridgesRequest as CatridgesRequest;
 
 class CatridgeController extends Controller
 {
-	public function index()
+	public function index($sort = null)
 	{
-		$catridges = Catridge::all();
+		if (!is_null($sort))
+		{
+			$catridges = Catridge::orderBy('type', $sort)->get();
+
+		}else{
+			$catridges = Catridge::orderBy('type', 'asc')->get();
+		}
+
+//		$catridges = Catridge::all();
 		return view('frontend.catridge.index', ['catridges' => $catridges]);
 	}
 
