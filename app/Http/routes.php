@@ -39,6 +39,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::group(array('prefix' => 'printer'), function()
 	{
+		Route::get('show', 'PrinterController@index');
 		Route::get('show/{sort?}', 'PrinterController@index');
 		Route::get('show/{id}', 'PrinterController@show');
 		Route::get('show/{id}/edit', 'PrinterController@edit');
