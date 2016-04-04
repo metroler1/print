@@ -1,2 +1,5 @@
-need hidden the Master`s field from index area & show on unique page of object
+1)need hidden the Master`s field from index area & show on unique page of object
+2)Надо фунционал для перемещения всех пустых катриджей мастеру и сразу забрать их
+3)Добавить таблицу счета
+4)рефакторинг таблиц для катриджей и принтеров
 

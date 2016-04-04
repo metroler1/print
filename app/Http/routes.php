@@ -50,7 +50,8 @@ Route::group(['middleware' => 'web'], function () {
 	});
 	Route::group(array('prefix' => 'catridge'), function()
 	{
-		Route::get('show/{soft?}', 'CatridgeController@index');
+		Route::get('show', 'CatridgeController@index');
+		Route::get('show/{sort?}', 'CatridgeController@index');
 		Route::get('show/{id}', 'CatridgeController@show');
 		Route::get('show/{id}/edit', 'CatridgeController@edit');
 		Route::patch('show/{id}', 'CatridgeController@update');

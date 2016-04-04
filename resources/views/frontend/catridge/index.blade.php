@@ -10,8 +10,8 @@
                         Инв. Номер <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
+                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
+                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
                     </ul>
                 </div>
             </td>
@@ -22,8 +22,8 @@
                         Тип <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
+                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
+                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
                     </ul>
                 </div>
             </td>
