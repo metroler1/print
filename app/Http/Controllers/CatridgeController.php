@@ -6,6 +6,7 @@ use App\Models\Catridge;
 use App\Models\Manifacture;
 use App\Models\Type;
 use App\Models\Master;
+use App\Models\StorageLocationCatridges;
 use App\Http\Requests;
 use App\Http\Requests\CatridgesRequest as CatridgesRequest;
 
@@ -43,7 +44,9 @@ class CatridgeController extends Controller
 
 		$catridges = Catridge::findOrFail($id);
 
-		return view('frontend.catridge.show', compact('catridges'));
+		$storageLocationCatridges = StorageLocationCatridges::all();
+
+		return view('frontend.catridge.show', compact('catridges', 'storageLocationCatridges'));
 
 
 	}

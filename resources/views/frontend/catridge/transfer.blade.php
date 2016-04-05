@@ -1,3 +1,4 @@
-{!! Form::open() !!}
-
-{!! Form::close() !!}
+@foreach($storageLocationCatridges as $storage)
+    {{$storage->category_name}}
+    <br/>
+@endforeach

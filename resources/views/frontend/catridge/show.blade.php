@@ -12,10 +12,14 @@
                 <a href={{ $catridges->id . '/edit' }} class="edit"><button type="button" class="btn btn-primary">Редактировать</button></a>
             </div>
         </div>
+
+        <div class="row" style="margin-top: 100px">
+        <div class="col-md-offset-5">
+            @include('frontend.catridge.transfer')
+        </div>
     </div>
-    <div class="row">
-        <h1>fds</h1>
-    </div>
+
+
 
 
 @endsection
