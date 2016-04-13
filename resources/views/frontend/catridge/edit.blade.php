@@ -33,8 +33,8 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('catridge_has', 'Установленный катридж') !!}
-                {!! Form::text('catridge_has', null, ['class' => 'form-control']) !!}
+                {!! Form::label('location', 'Установленный катридж') !!}
+                {!! Form::text('location', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">

@@ -32,6 +32,7 @@ class CatridgesRequest extends Request
 	{
 		return [
 			'current_id.integer' => 'Ивентарный номер должен быть числом'
+
 		];
 	}
 }

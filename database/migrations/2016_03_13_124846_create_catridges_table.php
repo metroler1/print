@@ -18,7 +18,7 @@ class CreateCatridgesTable extends Migration
 			$table->string('manifacture');
 			$table->string('model', 100);
 			$table->string('type', 10);
-			$table->integer('printer_has')->nullable();
+			$table->string('location', 100)->nullable();
 			$table->string('master', 100);
 			$table->text('auxiliary')->nullable();
 			$table->timestamps();
