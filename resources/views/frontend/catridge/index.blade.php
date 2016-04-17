@@ -1,6 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <div class="btn-group index_button">
+        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Владимир <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>@include('includes.catridge.form._fromMaster', ['master' => 'Володя', 'flag' => 0])</li>
+            <li role="separator" class="divider"></li>
+            <li>@include('includes.catridge.form._toMaster', ['master' => 'Володя', 'flag' => 1])</li>
+        </ul>
+    </div>
+    <div class="btn-group index_button">
+        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Максим <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>@include('includes.catridge.form._fromMaster', ['master' => 'Максим', 'flag' => 0])</li>
+            <li role="separator" class="divider"></li>
+            <li>@include('includes.catridge.form._toMaster', ['master' => 'Максим', 'flag' => 1])</li>
+        </ul>
+    </div>
+
     <table class="table table-hover" id="tableShow">
         <tr>
             <td class="title">#</td>
@@ -27,7 +49,7 @@
                     </ul>
                 </div>
             </td>
-            <td class="title">Офис/Кабинет/Сотрудник</td>
+            <td class="title">Местоположения</td>
             <td class="title">Уст в принетер</td>
             <td class="title">Мастер</td>
             <td class="title">Примечание</td>
@@ -41,7 +63,7 @@
                 <td><a href="{{ action('CatridgeController@show', [$catridge->id]) }}">{{ $catridge->current_id }}</a></td>
                 <td>{{ $catridge->manifacture }}</td>
                 <td>{{ $catridge->type }}</td>
-                <td>{{ $catridge->place }}</td>
+                <td>{{ $catridge->location }}</td>
                 <td>{{ $catridge->catridge_has }}</td>
                 <td>{{ $catridge->master }}</td>
                 <td>{{ $catridge->auxiliary }}</td>

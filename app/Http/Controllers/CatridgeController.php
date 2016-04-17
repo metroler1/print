@@ -9,6 +9,7 @@ use App\Models\Master;
 use App\Models\StorageLocationCatridges;
 use App\Http\Requests;
 use App\Http\Requests\CatridgesRequest as CatridgesRequest;
+use Illuminate\Support\Facades\Request;
 
 class CatridgeController extends Controller
 {
@@ -82,5 +83,33 @@ class CatridgeController extends Controller
 
 		return redirect('/addcatridge');
 	}
+
+	public function getCatridgesFromMaster(CatridgesRequest $request)
+	{
+		$catridge = new Catridge;
+		$master = $request->master;
+		$flag = $request->flag;
+
+		if($flag == '1')
+		{
+			$catridges = Catridge::toMaster($master);
+
+			return redirect('catridge/show');
+
+		}elseif($flag == '0')
+		{
+			$catridges = Catridge::fromMaster($master);
+
+			return redirect('catridge/show');
+		}
+
+	}
+
+//	public function CatridgestoMaster()
+//	{
+//		$catrisges = Catridge::fromMaster('Володя')->update(['location' => 'Мастерская']);
+//
+//		return redirect('catridge/show');
+//	}
 
 }

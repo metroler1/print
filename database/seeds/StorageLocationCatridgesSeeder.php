@@ -22,7 +22,7 @@ class StorageLocationCatridgesSeeder extends Seeder
 			),
 
 			array(
-				'category_name' => 'Пустые|Ремонт',
+				'category_name' => 'Мастерская',
 				'storage_id' => '',
 				'updated_at' => DB::raw('NOW()'),
 				'created_at' => DB::raw('NOW()'),

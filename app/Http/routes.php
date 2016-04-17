@@ -55,7 +55,8 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('show/{id}', 'CatridgeController@show');
 		Route::get('show/{id}/edit', 'CatridgeController@edit');
 		Route::patch('show/{id}', 'CatridgeController@update');
-
+		Route::post('show', 'CatridgeController@getCatridgesFromMaster');
+//		Route::post('show', 'CatridgeController@CatridgestoMaster');
 	});
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
