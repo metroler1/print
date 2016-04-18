@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
+
 class Catridge extends Model
 {
 	protected $fillable=['current_id', 'manifacture', 'model', 'type', 'location', 'master', 'auxiliary'];
@@ -11,9 +14,9 @@ class Catridge extends Model
 	public function scopeFromMaster($query, $master)
 	{
 		$query->where('master', $master)
-			->where('location', 'Мастерская')
-			->update(['location' => 'Склад']);
+			->where('location', 'Мастерская');
 	}
+
 
 	public function scopeToMaster($query, $master)
 	{
@@ -21,6 +24,20 @@ class Catridge extends Model
 			->where('location', 'Не работают')
 			->update(['location' => 'Мастерская']);
 	}
+
+
+//	public static function boot()
+//	{
+//		static::Updated(function($instance)
+//		{
+//			$users = new Bill;
+//
+//			$users->catridge_model = $instance->current_id;
+//			$users->save();
+
+//		});
+//		parent::boot();
+//	}
 }
 
 

@@ -41,7 +41,9 @@ td.title{
 .index_button{
 	margin-bottom: 25px;
 	margin-right: 15px;
-	margin-left: 15px;
+}
+.index_button:last-child{
+	margin-right: 0px;
 }
 
 

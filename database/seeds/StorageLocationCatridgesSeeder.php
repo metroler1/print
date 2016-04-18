@@ -21,12 +21,12 @@ class StorageLocationCatridgesSeeder extends Seeder
 				'created_at' => DB::raw('NOW()'),
 			),
 
-			array(
-				'category_name' => 'Мастерская',
-				'storage_id' => '',
-				'updated_at' => DB::raw('NOW()'),
-				'created_at' => DB::raw('NOW()'),
-			),
+//			array(
+//				'category_name' => 'Мастерская',
+//				'storage_id' => '',
+//				'updated_at' => DB::raw('NOW()'),
+//				'created_at' => DB::raw('NOW()'),
+//			),
 
 			array(
 				'category_name' => 'Склад',
@@ -37,6 +37,13 @@ class StorageLocationCatridgesSeeder extends Seeder
 
 			array(
 				'category_name' => 'В списанные',
+				'storage_id' => '',
+				'updated_at' => DB::raw('NOW()'),
+				'created_at' => DB::raw('NOW()'),
+			),
+
+			array(
+				'category_name' => 'Не работают',
 				'storage_id' => '',
 				'updated_at' => DB::raw('NOW()'),
 				'created_at' => DB::raw('NOW()'),

@@ -21,7 +21,9 @@ class CreateCatridgesTable extends Migration
 			$table->string('location', 100)->nullable();
 			$table->string('master', 100);
 			$table->text('auxiliary')->nullable();
+			$table->boolean('notice')->default(0);
 			$table->timestamps();
+
 		});
     }
 

@@ -27,6 +27,26 @@ var app = (function(){
 		$('#transfer').val(clickOptionValue);
 	});
 
+//	add new fields in bills
+
+	$('#bill_addAttr').bind('click', function (e) {
+		e.preventDefault();
+		var i = 0;
+
+		var catridgeModelName = 'catridge_model';
+		$('form').append('<div class="form-group">' +
+						'<input name="' + catridgeModelName + e.timeStamp +
+						'" type="text" placeholder="Модель катриджа">' +
+						' ' +
+						'<input name="price" type="text">' +
+						'</div>');
+
+		var dddd;
+		dddd.index(catridgeModelName);
+		alert(dddd);
+	});
+
+
 
 
 })();

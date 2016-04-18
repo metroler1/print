@@ -6,9 +6,11 @@ use App\Models\Catridge;
 use App\Models\Manifacture;
 use App\Models\Type;
 use App\Models\Master;
+use App\Models\Bill;
 use App\Models\StorageLocationCatridges;
 use App\Http\Requests;
 use App\Http\Requests\CatridgesRequest as CatridgesRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 
 class CatridgeController extends Controller
@@ -86,30 +88,31 @@ class CatridgeController extends Controller
 
 	public function getCatridgesFromMaster(CatridgesRequest $request)
 	{
-		$catridge = new Catridge;
+
 		$master = $request->master;
 		$flag = $request->flag;
+
 
 		if($flag == '1')
 		{
 			$catridges = Catridge::toMaster($master);
 
+
 			return redirect('catridge/show');
 
 		}elseif($flag == '0')
 		{
-			$catridges = Catridge::fromMaster($master);
+			Catridge::fromMaster($master)->update(['location' => 'Склад']);
+
+//			$check = new Bill;
+//
+//			$check->catridge_model = $master;
+//
+//			$check->save();
 
 			return redirect('catridge/show');
 		}
-
 	}
 
-//	public function CatridgestoMaster()
-//	{
-//		$catrisges = Catridge::fromMaster('Володя')->update(['location' => 'Мастерская']);
-//
-//		return redirect('catridge/show');
-//	}
 
 }
