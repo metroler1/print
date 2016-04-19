@@ -24,7 +24,7 @@
         </div>
 
         <div class="btn-group index_button pull-right">
-            <a href="bills"><button type="button" class="btn btn-success">Счета</button></a>
+            <a href="check"><button type="button" class="btn btn-success">Счета</button></a>
         </div>
     </div>
 
@@ -36,10 +36,7 @@
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Инв. Номер <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
-                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
-                    </ul>
+                    @include('frontend.catridge._sort')
                 </div>
             </td>
             <td class="title">Имя</td> {{--manifacture + model--}}
@@ -48,14 +45,11 @@
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Тип <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
-                        <li><a href="{{ action('CatridgeController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
-                    </ul>
+                    @include('frontend.catridge._sort')
                 </div>
             </td>
             <td class="title">Местоположения</td>
-            <td class="title">Уст в принетер</td>
+            {{--<td class="title">Уст в принетер</td>--}}
             <td class="title">Мастер</td>
             <td class="title">Примечание</td>
 
@@ -69,7 +63,7 @@
                 <td>{{ $catridge->manifacture }}</td>
                 <td>{{ $catridge->type }}</td>
                 <td>{{ $catridge->location }}</td>
-                <td>{{ $catridge->catridge_has }}</td>
+                {{--<td>{{ $catridge->catridge_has }}</td>--}}
                 <td>{{ $catridge->master }}</td>
                 <td>{{ $catridge->auxiliary }}</td>
             </tr>

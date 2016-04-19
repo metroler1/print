@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Check;
+use App\Http\Requests\CheckRequest as CheckRequest;
 
 class CheckController extends Controller
 {
 	public function index()
 	{
-		return view('frontend.check.index');
+		$checkCreate = Check::where('master', 'Максим')
+							->groupBy('influence')
+							->having('influence', '>', '0')
+							->get();
+//		$checkCreate = date('Y-m-d');
+		return view('frontend.check.index', compact('checkCreate'));
 	}
 
 	public function add()
@@ -19,7 +25,7 @@ class CheckController extends Controller
 		return view('frontend.check.add');
 	}
 
-	public function store(Request $request)
+	public function store(CheckRequest $request)
 	{
 //		$catridgeModel = [];
 //
@@ -40,12 +46,13 @@ class CheckController extends Controller
 		$check->catridge_model = $request->catridge_model;
 		$check->price = $request->price;
 		$check->master = $request->master;
-
+		$check->influence = $request->influence;
 		$check->save();
 		$response = array(
 			'status' => 'success',
 			'msg' => 'Setting created successfully',
 		);
-		return \Response::json($response);
+//		return \Response::json($response);
+		return redirect('/catridge/check');
 	}
 }

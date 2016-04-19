@@ -37,9 +37,8 @@ var app = (function(){
 		//});
 
 		var master = $('.master').val();
-
+		var influence = $('.influence').val();
 		var catridge_model = $('.catridge_model').last().val();
-
 		var price = $('.price').last().val();
 		$.ajax({
 			type: "POST",
@@ -47,7 +46,7 @@ var app = (function(){
 			headers: {
 				'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 			},
-			data: {master: master, catridge_model: catridge_model, price: price},
+			data: {master: master, influence: influence, catridge_model: catridge_model, price: price},
 			success: function( msg ) {
 				$("form").append("<div>"+msg+"</div>");
 			}

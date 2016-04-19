@@ -9,7 +9,7 @@ use App\Models\Master;
 use App\Models\Bill;
 use App\Models\StorageLocationCatridges;
 use App\Http\Requests;
-use App\Http\Requests\CatridgesRequest as CatridgesRequest;
+	use App\Http\Requests\CatridgesRequest as CatridgesRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 
