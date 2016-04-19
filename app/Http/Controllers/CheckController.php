@@ -21,15 +21,31 @@ class CheckController extends Controller
 
 	public function store(Request $request)
 	{
-		$catridgeModel = [];
-		$catridgeModel = $
+//		$catridgeModel = [];
+//
+//		$check = new Check;
+//		$check->catridge_model = $request->catridge_model;
+//		$check->price = $request->price;
+//		$check->master = $request->master;
+//
+//		$check->save();
+//
+//		return redirect('/catridge/check');
+
+//		Check::create($request->all());
+
+
+//
 		$check = new Check;
 		$check->catridge_model = $request->catridge_model;
 		$check->price = $request->price;
 		$check->master = $request->master;
 
 		$check->save();
-
-		return redirect('/catridge/check');
+		$response = array(
+			'status' => 'success',
+			'msg' => 'Setting created successfully',
+		);
+		return \Response::json($response);
 	}
 }

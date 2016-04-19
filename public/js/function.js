@@ -31,19 +31,40 @@ var app = (function(){
 
 	$('#bill_addAttr').bind('click', function (e) {
 		e.preventDefault();
-		var i = 0;
+
+		//$.ajaxSetup({
+		//	headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+		//});
+
+		var master = $('.master').val();
+
+		var catridge_model = $('.catridge_model').last().val();
+
+		var price = $('.price').last().val();
+		$.ajax({
+			type: "POST",
+			url: '/catridge/check/add',
+			headers: {
+				'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+			},
+			data: {master: master, catridge_model: catridge_model, price: price},
+			success: function( msg ) {
+				$("form").append("<div>"+msg+"</div>");
+			}
+		});
+
 
 		var catridgeModelName = 'catridge_model';
+
 		$('form').append('<div class="form-group">' +
-						'<input name="' + catridgeModelName + e.timeStamp +
-						'" type="text" placeholder="Модель катриджа">' +
+						'<input class="catridge_model"' +
+						'name="catridge_model"' +
+						'type="text" placeholder="Модель катриджа">' +
 						' ' +
 						'<input name="price" type="text">' +
 						'</div>');
 
-		var dddd;
-		dddd.index(catridgeModelName);
-		alert(dddd);
+
 	});
 
 
