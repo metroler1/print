@@ -16,9 +16,9 @@ class CreateTableCheck extends Migration
 			$table->increments('id');
 			$table->string('catridge_model');
 			$table->integer('price');
+			$table->string('type_of_repair', 25);
 			$table->string('master', 25);
 			$table->integer('influence')->nullable();
-
 			$table->timestamps();
 		});
     }

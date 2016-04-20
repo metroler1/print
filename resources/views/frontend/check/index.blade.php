@@ -14,7 +14,7 @@
                @foreach($checkCreate as $checkCreates)
                    <tr>
                        <td>
-                           <a href="">{{ $checkCreates->influence }}</a>
+                           <a href="{{ action('CheckController@show', [$checkCreates->influence]) }}">{{ $checkCreates->influence }}</a>
                        </td>
                    </tr>
                @endforeach

@@ -40,29 +40,30 @@ var app = (function(){
 		var influence = $('.influence').val();
 		var catridge_model = $('.catridge_model').last().val();
 		var price = $('.price').last().val();
+		var type_of_repair = $('.type_of_repair').last().val();
 		$.ajax({
 			type: "POST",
 			url: '/catridge/check/add',
 			headers: {
 				'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 			},
-			data: {master: master, influence: influence, catridge_model: catridge_model, price: price},
-			success: function( msg ) {
-				$("form").append("<div>"+msg+"</div>");
-			}
+			data: {master: master, influence: influence, type_of_repair: type_of_repair, catridge_model: catridge_model, price: price},
+			// success: function( msg ) {
+			// 	$("form").append("<div>"+msg+"</div>");
+			// }
 		});
 
 
 		var catridgeModelName = 'catridge_model';
 
-		$('form').append('<div class="form-group">' +
-						'<input class="catridge_model"' +
+		$('form').append('<div class="form-group form-inline">' +
+                        '<select class="type_of_repair form-control" name="type_of_repair"<option value=""></option><option value="refil">Запрвка</option><option value="recover">Востоновление</option><option value="repair">Ремонт</option></select>' +
+						'<input class="catridge_model form-control"' +
 						'name="catridge_model"' +
 						'type="text" placeholder="Модель катриджа">' +
 						' ' +
-						'<input name="price" type="text">' +
+						'<input name="price" class="price form-control" type="text" placeholder="Цена">' +
 						'</div>');
-
 
 	});
 

@@ -12,11 +12,8 @@ class CheckController extends Controller
 {
 	public function index()
 	{
-		$checkCreate = Check::where('master', 'Максим')
-							->groupBy('influence')
-							->having('influence', '>', '0')
-							->get();
-//		$checkCreate = date('Y-m-d');
+		$checkCreate = Check::billLists()->get();
+
 		return view('frontend.check.index', compact('checkCreate'));
 	}
 
@@ -25,28 +22,27 @@ class CheckController extends Controller
 		return view('frontend.check.add');
 	}
 
+	public function show($influence)
+	{
+		if (isset($influence)) 
+		{
+			$checks = Check::find($influence);
+			$checkData = Check::all();
+
+			return view('frontend.check.show', compact('checks', 'checkData'));
+		}
+		
+	}
+
 	public function store(CheckRequest $request)
 	{
-//		$catridgeModel = [];
-//
-//		$check = new Check;
-//		$check->catridge_model = $request->catridge_model;
-//		$check->price = $request->price;
-//		$check->master = $request->master;
-//
-//		$check->save();
-//
-//		return redirect('/catridge/check');
 
-//		Check::create($request->all());
-
-
-//
 		$check = new Check;
 		$check->catridge_model = $request->catridge_model;
 		$check->price = $request->price;
 		$check->master = $request->master;
 		$check->influence = $request->influence;
+		$check->type_of_repair = $request->type_of_repair;
 		$check->save();
 		$response = array(
 			'status' => 'success',

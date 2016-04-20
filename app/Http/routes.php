@@ -57,6 +57,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 		Route::get('check', 'CheckController@index');
+		Route::get('check/show/{id}', 'CheckController@show');
 		Route::get('check/add', 'CheckController@add');
 		Route::post('check/add', 'CheckController@store');
 
