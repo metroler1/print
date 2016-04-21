@@ -12,9 +12,10 @@ class CheckController extends Controller
 {
 	public function index()
 	{
-		$checkCreate = Check::billLists()->get();
+		$checkCreate = Check::billListsMaksim()->get();
+		$checkCreateSecondMaster = Check::billListsVladimir()->get();
 
-		return view('frontend.check.index', compact('checkCreate'));
+		return view('frontend.check.index', compact('checkCreate', 'checkCreateSecondMaster'));
 	}
 
 	public function add()

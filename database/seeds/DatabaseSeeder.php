@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(UserTableSeeder::class);
 		$this->call(CatridgeSeed::class);
 		$this->call(StorageLocationCatridgesSeeder::class);
-		$this->call(PrintersSeeder::class);
+		$this->call(PrinterSeeder::class);
     }
 }

@@ -11,9 +11,16 @@ class Check extends Model
 
 	protected $fillable = ['catridge_name', 'price', 'type_of_repair', 'master', 'influence'];
 
-    public function scopeBillLists($query)
+    public function scopeBillListsMaksim($query)
     {
         $query->where('master', 'Максим')
+            ->groupBy('influence')
+            ->having('influence', '>', '0');
+    }
+
+    public function scopeBillListsVladimir($query)
+    {
+        $query->where('master', 'Владимир')
             ->groupBy('influence')
             ->having('influence', '>', '0');
     }

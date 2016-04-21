@@ -47,7 +47,7 @@ var app = (function(){
 			headers: {
 				'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 			},
-			data: {master: master, influence: influence, type_of_repair: type_of_repair, catridge_model: catridge_model, price: price},
+			data: {master: master, influence: influence, type_of_repair: type_of_repair, catridge_model: catridge_model, price: price}
 			// success: function( msg ) {
 			// 	$("form").append("<div>"+msg+"</div>");
 			// }
@@ -66,6 +66,39 @@ var app = (function(){
 						'</div>');
 
 	});
+
+
+
+
+//***********************************SORT***************************
+//     $('.sort li').bind('click', function () {
+//
+//         var sort = $(this).attr('data-sort')
+//
+//
+//
+//         $.ajax({
+//             type: "PATCH",
+//             url: '/catridge/show',
+//             headers: {
+//                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+//             },
+//             data: {sort: sort},
+//             success: function () {
+//                 console.log('ajax was send' + ' ' + sort)
+//             },
+//             done: function () {
+//               console.log('fsdsfs')
+//             },
+//             error: function(msg)
+//             {
+//                 console.log(msg); // в консоле  отображаем информацию об ошибки, если они есть
+//             }
+//         });
+
+    // });
+
+//***********************************END SORT***************************
 
 
 

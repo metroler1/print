@@ -14,7 +14,7 @@ class CreateCatridgesTable extends Migration
     {
 		Schema::create('catridges', function(Blueprint $table){
 			$table->increments('id');
-			$table->integer('current_id');
+			$table->integer('current_id')->unique();
 			$table->string('manifacture');
 			$table->string('model', 100);
 			$table->string('type', 10);

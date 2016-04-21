@@ -15,18 +15,24 @@ use Illuminate\Support\Facades\Request;
 
 class CatridgeController extends Controller
 {
-	public function index($sort = null)
+	public function index(CatridgesRequest $request)
 	{
-		if (!is_null($sort))
-		{
-			$catridges = Catridge::orderBy('type', $sort)->get();
 
-		}else{
-			$catridges = Catridge::orderBy('type', 'asc')->get();
-		}
+        $sort = $request->sort;
+        $flag = $request->flag;
+        if (isset($sort))
+        {
+         $catridges = Catridge::orderBy('current_id', $sort)->get();
 
-//		$catridges = Catridge::all();
-		return view('frontend.catridge.index', ['catridges' => $catridges]);
+            return view('frontend.catridge.index', ['catridges' => $catridges]);
+        }else{
+            $catridges = Catridge::orderBy('current_id', 'asc')->get();
+
+            return view('frontend.catridge.index', ['catridges' => $catridges]);
+        }
+
+        return view('frontend.catridge.index', ['catridges' => $catridges]);
+
 	}
 
     public function add()
