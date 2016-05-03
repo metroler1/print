@@ -34,23 +34,24 @@
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-	Route::get('/', 'DashboardController@index');
-//	Route::get('/home', 'HomeController@index');
+	Route::get('/', function (){
+        return redirect('/catridge/show');
+    });
 
 	Route::group(array('prefix' => 'printer'), function()
 	{
 		Route::get('show', 'PrinterController@index');
-		Route::get('show/{sort?}', 'PrinterController@index');
+		Route::patch('show', 'PrinterController@index');
 		Route::get('show/{id}', 'PrinterController@show');
 		Route::get('show/{id}/edit', 'PrinterController@edit');
 		Route::patch('show/{id}', 'PrinterController@update');
 
 	});
+
 	Route::group(array('prefix' => 'catridge'), function()
 	{
 		Route::get('show', 'CatridgeController@index');
-        Route::post('show', 'CatridgeController@index');
-//		Route::get('show/{sort?}', 'CatridgeController@index');
+        Route::patch('show', 'CatridgeController@index');
 		Route::get('show/{id}', 'CatridgeController@show');
 		Route::get('show/{id}/edit', 'CatridgeController@edit');
 		Route::patch('show/{id}', 'CatridgeController@update');
@@ -63,6 +64,12 @@ Route::group(['middleware' => 'web'], function () {
 		Route::post('check/add', 'CheckController@store');
 
 	});
+
+    Route::group(array('prefix' => 'statistics'), function()
+    {
+        Route::get('/', 'StatisticsController@index');
+        Route::post('/', 'StatisticsController@index');
+    });
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
 	{
@@ -95,7 +102,18 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('add', 'MasterController@store');
 		});
 
+        Route::group(array('prefix' => 'office'), function () {
+            Route::get('/', 'OfficeController@index');
+            Route::get('add', 'OfficeController@add');
+            Route::post('add', 'OfficeController@store');
+        });
+
+        Route::group(array('prefix' => 'papers'), function () {
+            Route::get('/', 'Backend\PaperCountersController@index');
+            Route::get('add', 'Backend\PaperCountersController@add');
+            Route::post('add', 'Backend\PaperCountersController@store');
+        });
+
 	});
 
 });
-//Route::get('/home', 'HomeController@index');

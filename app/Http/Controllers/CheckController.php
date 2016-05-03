@@ -28,7 +28,7 @@ class CheckController extends Controller
 		if (isset($influence)) 
 		{
 			$checks = Check::find($influence);
-			$checkData = Check::all();
+			$checkData = Check::showCheckId($influence)->get();
 
 			return view('frontend.check.show', compact('checks', 'checkData'));
 		}
@@ -40,10 +40,12 @@ class CheckController extends Controller
 
 		$check = new Check;
 		$check->catridge_model = $request->catridge_model;
+		$check->catridge_current_id = $request->catridge_current_id;
 		$check->price = $request->price;
 		$check->master = $request->master;
 		$check->influence = $request->influence;
 		$check->type_of_repair = $request->type_of_repair;
+		
 		$check->save();
 		$response = array(
 			'status' => 'success',

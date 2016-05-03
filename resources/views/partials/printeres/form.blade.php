@@ -9,28 +9,38 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('modal', 'Модель') !!}
-    {!! Form::text('modal', null, ['class' => 'form-control']) !!}
+    {!! Form::label('model', 'Модель') !!}
+    {!! Form::text('model', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('type', 'Тип') !!}
     {!! Form::text('type', null, ['class' => 'form-control']) !!}
 </div>
-d
+
 <div class="form-group">
     {!! Form::label('place', 'Местонахождения') !!}
     {!! Form::text('place', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('catridge_has', 'Установленный катридж') !!}
-    {!! Form::text('catridge_has', null, ['class' => 'form-control']) !!}
+    {!! Form::label('room', 'Комната') !!}
+    {!! Form::text('room', null, ['class' => 'form-control', 'placeholder' => 'Комната']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('person', 'Содрудник') !!}
+    {!! Form::text('person', null, ['class' => 'form-control', 'placeholder' => 'Содрудник']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('ip', 'ip') !!}
+    {!! Form::text('ip', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('master', 'Мастер') !!}
-    {!! Form::text('master', 'fdsf', ['class' => 'form-control']) !!}
+    {!! Form::text('master', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

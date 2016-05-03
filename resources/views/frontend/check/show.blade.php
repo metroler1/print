@@ -1,9 +1,23 @@
 @extends('layouts.app')
 
-	dsada
-<div class="container">
-	@foreach($checkData as $oneData)
-		{{ $oneData->price }}
-	@endforeach	
+@section('content')
+    <div class="container">
+        <h1>Здесь будет подробная информация о счете</h1>
+        <table class="table table-striped">
+            <tr>
+                <td>Инв. номер</td>
+                <td>Цена</td>
+                <td>Модель</td>
+            </tr>
+            @foreach($checkData as $oneData)
+                <tr>
+                    <td>{{ $oneData->catridge_current_id }}</td>
+                    <td>{{ $oneData->price }}</td>
+                    <td>{{ $oneData->model }}</td>
+                </tr>
 
-</div>
+            @endforeach
+        </table>
+
+    </div>
+@endsection

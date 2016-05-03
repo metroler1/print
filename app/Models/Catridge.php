@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Displacement;
 
 
 
@@ -26,18 +26,18 @@ class Catridge extends Model
 	}
 
 
-//	public static function boot()
-//	{
-//		static::Updated(function($instance)
-//		{
-//			$users = new Bill;
-//
-//			$users->catridge_model = $instance->current_id;
-//			$users->save();
+	public static function boot()
+	{
+		static::Updated(function($instance)
+		{
+			$users = new Displacement;
 
-//		});
-//		parent::boot();
-//	}
+			$users->catridge_model = $instance->current_id;
+			$users->save();
+
+		});
+		parent::boot();
+	}
 }
 
 

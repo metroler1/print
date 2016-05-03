@@ -25,4 +25,9 @@ class Check extends Model
             ->having('influence', '>', '0');
     }
 
+    public function scopeShowCheckId($query, $influence)
+    {
+        $query->where('influence', $influence);
+    }
+
 }

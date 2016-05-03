@@ -9,26 +9,22 @@
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Инв. Номер <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
-                    </ul>
+                    @include('frontend.printer._sort', ['sortType' => 'current_id'])
                 </div>
             </td>
             <td class="title">Имя</td> {{--manifacture + model--}}
+            <td class="title">Модель</td>
             <td class="title">
                 <div class="btn-group">
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Тип <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'asc']) }}">по убыванию</a></li>
-                        <li><a href="{{ action('PrinterController@index', ['sort' => 'desc']) }}">по возростанию</a></li>
-                    </ul>
+                    @include('frontend.printer._sort', ['sortType' => 'type'])
                 </div>
             </td>
+
             <td class="title">Офис/Кабинет/Сотрудник</td>
-            <td class="title">Уст катридж</td>
+            <td class="title">ip</td>
             <td class="title">Мастер</td>
             <td class="title">Примечание</td>
 
@@ -40,9 +36,10 @@
                 </td>
                 <td><a href="{{ action('PrinterController@show', [$printers->id]) }}">{{ $printers->current_id }}</a></td>
                 <td>{{ $printers->manifacture }}</td>
+                <td>{{ $printers->model }}</td>
                 <td>{{ $printers->type }}</td>
-                <td>{{ $printers->place }}</td>
-                <td>{{ $printers->catridge_has }}</td>
+                <td>{{ $printers->place }}/{{$printers->room}}/{{$printers->person}}</td>
+                <td>{{ $printers->ip }}</td>
                 <td>{{ $printers->master }}</td>
                 <td>{{ $printers->auxiliary }}</td>
             </tr>

@@ -14,8 +14,8 @@ class CreateTableDisplacement extends Migration
     {
 		Schema::create('displacement', function(Blueprint $table){
 			$table->increments('id');
-			$table->string('catridge_model');
-			$table->integer('price');
+			$table->string('catridge_current_id');
+			$table->integer('to_place');
 			$table->integer('notice');
 			$table->timestamps();
 		});

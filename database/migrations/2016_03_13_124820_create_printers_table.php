@@ -19,6 +19,9 @@ class CreatePrintersTable extends Migration
 			$table->string('model');
 			$table->string('type', 10);
 			$table->string('place');
+			$table->string('room')->nullable();
+			$table->string('person')->nullable();
+            $table->string('ip', 15);
 			$table->integer('catridge_has')->nullable();
 			$table->string('master', 100);
 			$table->text('auxiliary')->nullable();

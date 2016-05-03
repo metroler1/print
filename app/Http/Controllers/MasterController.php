@@ -22,6 +22,6 @@ class MasterController extends Controller
 	{
 		Master::create($request->all());
 
-		return redirect('/manager/master/add');
+		return redirect('/manager/office/add');
 	}
 }

@@ -36,7 +36,7 @@
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Инв. Номер <span class="caret"></span>
                     </button>
-                    @include('frontend.catridge._sort')
+                    @include('frontend.catridge._sort', ['sortType' => 'current_id'])
                 </div>
             </td>
             <td class="title">Имя</td> {{--manifacture + model--}}
@@ -45,7 +45,7 @@
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Тип <span class="caret"></span>
                     </button>
-                    @include('frontend.catridge._sort')
+                    @include('frontend.catridge._sort', ['sortType' => 'type'])
                 </div>
             </td>
             <td class="title">Местоположения</td>

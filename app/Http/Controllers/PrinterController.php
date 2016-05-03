@@ -16,18 +16,17 @@ use Illuminate\Support\Facades\Auth;
 
 class PrinterController extends Controller
 {
-	public function index($sort = null)
+	public function index(StorePrintersPostRequest $request)
 	{
-		if (!is_null($sort))
-		{
-			$printer = Printer::orderBy('type', $sort)->get();
+        $sort = $request->sort;
+        $sortType = $request->sortType;
 
-		}else{
-			$printer = Printer::orderBy('type', 'asc')->get();
-		}
-
-
-//		$printer = Printer::all();
+        if (isset($sort) && isset($sortType))
+        {
+            $printer = Printer::orderBy($sortType, $sort)->get();
+        }else{
+            $printer = Printer::orderBy('current_id', 'asc')->get();
+        }
 
 		return view('frontend.printer.index', ['printer' => $printer]);
 	}
@@ -77,15 +76,12 @@ class PrinterController extends Controller
 		$printer->model = $request->model;
 		$printer->type = $request->type;
 		$printer->place = $request->place;
+		$printer->ip = $request->ip;
 		$printer->catridge_has = $request->catridge_has;
 		$printer->master = $request->master;
 		$printer->auxiliary = $request->auxiliary;
 		$printer->save();
-
-//		if($request->ajax()){
-//			return response()->json();
-//		}
-
+        
 		return redirect('/manager/addprinter');
 	}
 

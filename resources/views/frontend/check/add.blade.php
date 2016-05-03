@@ -14,9 +14,10 @@
             </div>
 
             <div class="form-group form-inline">
-                {!! Form::select('type_of_repair', ['refil' => 'Запрвка', 'recover' => 'Востоновление', 'repair' => 'Ремонт'], null,  ['class' => 'type_of_repair form-control']) !!}
-                {!! Form::text('catridge_model', null, ['class' => 'catridge_model form-control', 'placeholder' => 'Модель катриджа']) !!}
+                {!! Form::select('type_of_repair', ['refil' => 'Запрвка', 'recover' => 'Востановление', 'repair' => 'Ремонт'], null,  ['class' => 'type_of_repair form-control']) !!}
+                {!! Form::text('catridge_current_id', null, ['class' => 'catridge_current_id form-control', 'placeholder' => 'Инв. номер']) !!}
                 {!! Form::text('price', null, ['class' => 'price form-control', 'placeholder' => 'Цена']) !!}
+                {!! Form::text('catridge_model', null, ['class' => 'catridge_model form-control', 'placeholder' => 'Модель катриджа']) !!}
             </div>
 
            

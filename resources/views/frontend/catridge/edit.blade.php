@@ -18,8 +18,8 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('modal', 'Модель') !!}
-                {!! Form::text('modal', null, ['class' => 'form-control']) !!}
+                {!! Form::label('model', 'Модель') !!}
+                {!! Form::text('model', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
@@ -28,12 +28,7 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('place', 'Местонахождения') !!}
-                {!! Form::text('place', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('location', 'Установленный катридж') !!}
+                {!! Form::label('location', 'Местонахождения катриджа') !!}
                 {!! Form::text('location', null, ['class' => 'form-control']) !!}
             </div>
 

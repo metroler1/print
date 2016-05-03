@@ -14,10 +14,11 @@ class CreateTableCheck extends Migration
     {
 		Schema::create('check', function(Blueprint $table){
 			$table->increments('id');
-			$table->string('catridge_model');
+			$table->integer('catridge_current_id')->nullable();
 			$table->integer('price');
 			$table->string('type_of_repair', 25);
 			$table->string('master', 25);
+			$table->string('catridge_model')->nullable();
 			$table->integer('influence')->nullable();
 			$table->timestamps();
 		});
