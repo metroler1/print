@@ -77,12 +77,15 @@
 <div class="col-md-8">
 
     <table class="table table-striped cost report" id="cost_statistiks">
+        <thead>
         <tr>
                 <td>Тип</td>
                 <td>Цена</td>
                 <td>Дата</td>
                 <td>Мастер</td>
         </tr>
+        </thead>
+        <tbody>
             @foreach($checks as $key => $check)
                 <tr>
                     <td>{{ $check->type_of_repair }}</td>
@@ -91,7 +94,7 @@
                     <td>{{ $check->master }}</td>
                 </tr>
             @endforeach
-
+        </tbody>
     </table>
 
 </div>

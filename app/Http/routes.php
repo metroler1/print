@@ -70,6 +70,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'StatisticsController@index');
         Route::post('/', 'StatisticsController@index');
     });
+
+    Route::group(array('prefix' => 'wifi'), function()
+    {
+        Route::get('/', 'WifiController@index');
+    });
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
 	{

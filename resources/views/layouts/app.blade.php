@@ -13,8 +13,11 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="/../css/style.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+
+    <link href="../css/datatables/datatables.min.css" rel="stylesheet">
+
 
     <style>
         body {
@@ -47,21 +50,9 @@
                     <li class="active"><a href="/catridge/show">Катриджи<span class="sr-only">(current)</span></a></li>
                     <li><a href="/printer/show">Принтера</a></li>
                     <li><a href="/statistics">Статистика</a></li>
+                    <li><a href="/wifi">Wifi</a></li>
 
-                    <!--
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                    -->
+
 
                 </ul>
             </div>
@@ -109,6 +100,7 @@
 
     <script src="/../js/function.js"></script>
     <script src="../js/table.js"></script>
+    <script src="../js/datatables/datatables.min.js"></script>
 
     @yield('scripts')
 </body>

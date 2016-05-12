@@ -9,7 +9,7 @@ use App\Models\Displacement;
 
 class Catridge extends Model
 {
-	protected $fillable=['current_id', 'manifacture', 'model', 'type', 'location', 'master', 'auxiliary'];
+	protected $fillable=['current_id', 'manifacture', 'model', 'type', 'location', 'master', 'auxiliary', 'notice'];
 
 	public function scopeFromMaster($query, $master)
 	{
@@ -32,7 +32,8 @@ class Catridge extends Model
 		{
 			$users = new Displacement;
 
-			$users->catridge_model = $instance->current_id;
+			$users->catridge_current_id = $instance->current_id;
+			$users->to_place = $instance->location;
 			$users->save();
 
 		});

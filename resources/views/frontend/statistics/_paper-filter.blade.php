@@ -30,12 +30,15 @@
     <div class="col-md-8">
 
         <table class="table table-striped _paper_filter report" id="paper_statistiks">
+            <thead>
             <tr>
                 <td>№</td>
                 <td>Устройства</td>
                 <td>Колличество</td>
                 <td>Дата</td>
             </tr>
+            </thead>
+            <tbody>
             @foreach($paper_counters as $key => $paper_counter)
                 <tr>
                     <td>{{ $key }}</td>
@@ -44,5 +47,6 @@
                     <td class="date">{{ date('Y-m-d', $paper_counter->influence) }}</td>
                 </tr>
             @endforeach
+            </tbody>
         </table>
     </div>
