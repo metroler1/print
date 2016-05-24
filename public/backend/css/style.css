@@ -1,0 +1,14 @@
+/*style for add paper*/
+
+.text-style{
+    color: #dbd8d8;
+}
+
+
+.modal-footer.type{
+    border-top:none;
+}
+
+.right-button-line{
+    border-right: 1px solid lightgrey;
+}

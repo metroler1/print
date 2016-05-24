@@ -8,8 +8,8 @@ class PaperCounter extends Model
 {
     protected $fillable = ['device_name', 'number_of', 'notice'];
 
-    public function scopeGetDateSet($query)
+    public function scopeGetDataDate($query)
     {
-        
+        $query->groupBy('influence');
     }
 }

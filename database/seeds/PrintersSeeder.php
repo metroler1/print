@@ -179,7 +179,35 @@ class PrinterSeeder extends Seeder
                 'created_at' => DB::raw('NOW()'),
             ),
 
+            array(
+                'current_id' => '02044019',
+                'manifacture' => 'HP',
+                'model' => '1018',
+                'type' => 'B',
+                'place' => 'Старажевская',
+                'room' => 'Резерв',
+                'person' => '',
+                'ip' => '',
+                'master' => 'Владимир',
+                'auxiliary' => '',
+                'updated_at' => DB::raw('NOW()'),
+                'created_at' => DB::raw('NOW()'),
+            ),
 
+            array(
+                'current_id' => '02044012',
+                'manifacture' => 'Canon',
+                'model' => 'LBP2900B',
+                'type' => 'B',
+                'place' => 'Старажевская',
+                'room' => 'Резерв',
+                'person' => '',
+                'ip' => '',
+                'master' => 'Владимир',
+                'auxiliary' => '',
+                'updated_at' => DB::raw('NOW()'),
+                'created_at' => DB::raw('NOW()'),
+            ),
 
 
 

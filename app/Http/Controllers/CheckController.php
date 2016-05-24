@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Models\Check;
 use App\Http\Requests\CheckRequest as CheckRequest;
@@ -15,6 +15,7 @@ class CheckController extends Controller
 		$checkCreate = Check::billListsMaksim()->get();
 		$checkCreateSecondMaster = Check::billListsVladimir()->get();
 
+		
 		return view('frontend.check.index', compact('checkCreate', 'checkCreateSecondMaster'));
 	}
 
@@ -47,11 +48,22 @@ class CheckController extends Controller
 		$check->type_of_repair = $request->type_of_repair;
 		
 		$check->save();
-		$response = array(
-			'status' => 'success',
-			'msg' => 'Setting created successfully',
-		);
+		// $response = array(
+		// 	'status' => 'success',
+		// 	'msg' => 'Setting created successfully',
+		// );
 //		return \Response::json($response);
-		return redirect('/catridge/check');
+		// return redirect('/cartridge/check');
 	}
+
+	public function giveData()
+	{
+
+		$data = Check::all();
+		
+		return $data;
+		
+
+	}
+
 }

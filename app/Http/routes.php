@@ -35,7 +35,7 @@
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 	Route::get('/', function (){
-        return redirect('/catridge/show');
+        return redirect('/cartridge/show');
     });
 
 	Route::group(array('prefix' => 'printer'), function()
@@ -48,7 +48,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	});
 
-	Route::group(array('prefix' => 'catridge'), function()
+	Route::group(array('prefix' => 'cartridge'), function()
 	{
 		Route::get('show', 'CatridgeController@index');
         Route::patch('show', 'CatridgeController@index');
@@ -62,6 +62,8 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('check/show/{id}', 'CheckController@show');
 		Route::get('check/add', 'CheckController@add');
 		Route::post('check/add', 'CheckController@store');
+		Route::patch('check/add', 'CheckController@giveData');
+		
 
 	});
 
@@ -70,6 +72,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/', 'StatisticsController@index');
         Route::post('/', 'StatisticsController@index');
     });
+
+    Route::group(array('prefix' => 'wifi'), function()
+    {
+        Route::get('/', 'WifiController@index');
+    });
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
 	{
@@ -77,18 +84,23 @@ Route::group(['middleware' => 'web'], function () {
 			return view('backend.index');
 		});
 
-		Route::get('add', 'TypeController@add');
-		Route::post('add', 'TypeController@store');
+
+        Route::resource('type', 'Backend\TypeController');
+		
 
 		Route::get('addmanifacture', 'ManifactureController@add');
 		Route::post('addmanifacture', 'ManifactureController@store');
 
+        Route::resource('printer', 'Backend\PrinterController');
 
-		Route::get('addprinter', 'PrinterController@add');
-		Route::post('addprinter', 'PrinterController@store');
+        Route::resource('cartridge', 'Backend\CartridgeController');
 
-		Route::get('addcatridge', 'CatridgeController@add');
-		Route::post('addcatridge', 'CatridgeController@store');
+//		Route::get('addprinter', 'PrinterController@add');
+//		Route::post('addprinter', 'PrinterController@store');
+
+
+//		Route::get('addcatridge', 'CatridgeController@add');
+//		Route::post('addcatridge', 'CatridgeController@store');
 
 		Route::group(array('prefix' => 'place'), function()
 		{
@@ -96,11 +108,7 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('add', 'PlaceController@store');
 		});
 
-		Route::group(array('prefix' => 'master'), function()
-		{
-			Route::get('add', 'MasterController@add');
-			Route::post('add', 'MasterController@store');
-		});
+        Route::resource('master', 'Backend\MasterController');
 
         Route::group(array('prefix' => 'office'), function () {
             Route::get('/', 'OfficeController@index');
@@ -108,11 +116,12 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('add', 'OfficeController@store');
         });
 
-        Route::group(array('prefix' => 'papers'), function () {
-            Route::get('/', 'Backend\PaperCountersController@index');
-            Route::get('add', 'Backend\PaperCountersController@add');
-            Route::post('add', 'Backend\PaperCountersController@store');
-        });
+//        Route::group(array('prefix' => 'papers'), function () {
+//            Route::get('/', 'Backend\PaperCountersController@index');
+//            Route::get('add', 'Backend\PaperCountersController@add');
+//            Route::post('add', 'Backend\PaperCountersController@store');
+//        });
+        Route::resource('papers', 'Backend\PaperCountersController');
 
 	});
 

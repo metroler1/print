@@ -11,7 +11,7 @@ class Printer extends Model
 
     public function scopePrinterWithIp($query)
     {
-        $query->where('ip', '!=', 'NULL');
+        $query->where('ip', '<>', '');
     }
 
 }

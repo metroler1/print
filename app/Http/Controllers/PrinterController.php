@@ -31,18 +31,6 @@ class PrinterController extends Controller
 		return view('frontend.printer.index', ['printer' => $printer]);
 	}
 
-    public function add()
-	{
-		$printer = Type::all();
-		$manifactures = Manifacture::all();
-		$places = Place::all();
-		$masters = Master::all();
-		return view('backend.printer.add', ['printer' => $printer,
-											'manifactures' => $manifactures,
-											'places' => $places,
-											'masters' => $masters
-											]);
-	}
 	public function show($id)
 	{
 		$printeres = Printer::findOrFail($id);
@@ -67,23 +55,6 @@ class PrinterController extends Controller
 		return redirect('printer/show');
 	}
 
-	public function store(StorePrintersPostRequest $request)
-	{
-		$printer = new Printer;
-
-		$printer->current_id = $request->current_id;
-		$printer->manifacture = $request->manifacture;
-		$printer->model = $request->model;
-		$printer->type = $request->type;
-		$printer->place = $request->place;
-		$printer->ip = $request->ip;
-		$printer->catridge_has = $request->catridge_has;
-		$printer->master = $request->master;
-		$printer->auxiliary = $request->auxiliary;
-		$printer->save();
-        
-		return redirect('/manager/addprinter');
-	}
 
 
 }

@@ -2,6 +2,7 @@
 
 @section('styles')
     <link href="css/jqueryui/jquery-ui.css" rel="stylesheet">
+    <link href="css/icheck/icheck.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -37,7 +38,10 @@
 @section('scripts')
     <script src="../js/pluginstable.js"></script>
     <script src="../js/jqueryui/jquery-ui.js"></script>
+    <script src="../js/icheck/icheck.js"></script>
     <script>
+
+        {{--settings for jquery ui calendar--}}
         $(function() {
             $( ".datepickerfrom" ).datepicker({
                 changeMonth: true,
@@ -55,6 +59,28 @@
                 buttonImageOnly: true,
                 buttonText: "Select date"
             });
+
+
         });
+
+        //settings for datatables
+
+        $(document).ready( function () {
+            $('#cost_statistiks').DataTable();
+        });
+
+        $(document).ready( function () {
+            $('#paper_statistiks').DataTable();
+        });
+
+        // settings for icheck
+        $(document).ready(function(){
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square',
+                increaseArea: '20%' // optional
+            });
+        });
+
     </script>
 @endsection

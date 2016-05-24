@@ -15,15 +15,28 @@ class PaperCountersController extends Controller
 {
     public function index()
     {
-
-        return view('backend.paper.index');
+        $data = PaperCounter::getDataDate()->get();
+        return view('backend.paper.index', compact('data'));
     }
 
-    public function add()
+//    public function add()
+//    {
+//        $printeres = Printer::printerWithIp()->get();
+//
+//        return view('backend.paper.add', compact('printeres'));
+//
+//    }
+
+    public function create()
     {
         $printeres = Printer::printerWithIp()->get();
 
         return view('backend.paper.add', compact('printeres'));
+    }
+
+    public function show($id)
+    {
+
     }
 
     public function store(PaperCountersRequest $request)

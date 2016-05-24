@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(CatridgeSeed::class);
 		$this->call(StorageLocationCatridgesSeeder::class);
 		$this->call(PrinterSeeder::class);
+		$this->call(CheckSeeder::class);
     }
 }

@@ -2,7 +2,7 @@ var app = (function(){
 
     //	add new fields in bills
 
-    $('#paper_addAttr').bind('click', function (e) {
+    $('#sendAjaxData').bind('click', function (e) {
         e.preventDefault();
         var arr_number_of = new Array();
         var arr_device_name = new Array();
@@ -21,7 +21,7 @@ var app = (function(){
         // just timestamp in unix format
             var influence = $('.influence').val();
 
-            // for (var i = 0; i < arr_number_of.length; i++)
+            
             while (i < arr_number_of.length)
             {
                 var influence = $('.influence').val();
@@ -30,7 +30,7 @@ var app = (function(){
 
                 $.ajax({
                         type: "POST",
-                        url: '/manager/papers/add',
+                        url: '/manager/papers',
                         headers: {
                             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                         },
@@ -44,19 +44,11 @@ var app = (function(){
 
             }
 
-        //после
-        window.location.reload();
+        //после редиректим на страницу paper
+        var url =  window.location.href;
+        var redirectTo = url.replace('/create', '');
+        window.location.href = redirectTo;
 
-
-
-
-        // $('form').append('<div class="form-group form-inline">' +
-        //     '<input class="device_name form-control"' +
-        //     'name="device_name"' +
-        //     'type="text" placeholder="Машина">' +
-        //     ' ' +
-        //     '<input name="number_of" class="number_of form-control" type="text" placeholder="Колличество">' +
-        //     '</div>');
 
     });
 

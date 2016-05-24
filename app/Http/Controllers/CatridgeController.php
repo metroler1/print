@@ -25,26 +25,13 @@ class CatridgeController extends Controller
         {
          $catridges = Catridge::orderBy($sortType, $sort)->get();
 
-//            return view('frontend.catridge.index', ['catridges' => $catridges]);
+//            return view('frontend.cartridge.index', ['catridges' => $catridges]);
         }else{
             $catridges = Catridge::orderBy('current_id', 'desc')->get();
 
 
         }
         return view('frontend.catridge.index', ['catridges' => $catridges]);
-	}
-
-    public function add()
-	{
-		$manifactures = Manifacture::all();
-		$types = Type::all();
-		$masters = Master::all();
-
-		return view('backend.catridge.add', [
-			'manifactures' => $manifactures,
-			'types' => $types,
-			'masters' => $masters
-		]);
 	}
 
 	public function show($id)
@@ -63,7 +50,7 @@ class CatridgeController extends Controller
 	{
 		$catridges = Catridge::findOrFail($id);
 
-		return view('frontend.catridge.edit', compact('catridges'));
+		return view('frontend.cartridge.edit', compact('catridges'));
 	}
 
 	public function update($id, CatridgesRequest $request)
@@ -72,24 +59,24 @@ class CatridgeController extends Controller
 
 		$catridges->update($request->all());
 
-		return redirect('catridge/show');
+		return redirect('cartridge/show');
 
 	}
 
-	public function store(CatridgesRequest $request)
-	{
-		$catridge = new Catridge;
-		$catridge->current_id = $request->current_id;
-		$catridge->manifacture = $request->manifacture;
-		$catridge->model = $request->model;
-		$catridge->type = $request->type;
-		$catridge->printer_has = $request->printer_has;
-		$catridge->master = $request->master;
-		$catridge->auxiliary = $request->auxiliary;
-		$catridge->save();
-
-		return redirect('/addcatridge');
-	}
+//	public function store(CatridgesRequest $request)
+//	{
+//		$catridge = new Catridge;
+//		$catridge->current_id = $request->current_id;
+//		$catridge->manifacture = $request->manifacture;
+//		$catridge->model = $request->model;
+//		$catridge->type = $request->type;
+//		$catridge->location = $request->location;
+//		$catridge->master = $request->master;
+//		$catridge->auxiliary = $request->auxiliary;
+//		$catridge->save();
+//
+//		return redirect('/manager/addcatridge');
+//	}
 
 	public function getCatridgesFromMaster(CatridgesRequest $request)
 	{
@@ -103,7 +90,7 @@ class CatridgeController extends Controller
 			$catridges = Catridge::toMaster($master);
 
 
-			return redirect('catridge/show');
+			return redirect('cartridge/show');
 
 		}elseif($flag == '0')
 		{
@@ -115,7 +102,7 @@ class CatridgeController extends Controller
 //
 //			$check->save();
 
-			return redirect('catridge/show');
+			return redirect('cartridge/show');
 		}
 	}
 

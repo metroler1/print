@@ -7,17 +7,15 @@
     <meta name="csrf-token" content="<?php echo csrf_token() ?>"/>
     <title>StrPrinter</title>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+
     <!-- Styles -->
-    {{--<link href="backend/css/bootstrap.min.css" rel="stylesheet">--}}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <!-- MetisMenu CSS -->
-    {{--<link href="backend/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">--}}
+    <!-- main CSS -->
+    <link href="../backend/css/style.css" rel="stylesheet">
+    <link href="../css/datatables/datatables.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    {{--<link href="backend/css/plugins/timeline.css" rel="stylesheet">--}}
-
-    <!-- Custom CSS -->
-    {{--<link href="backend/css/sb-admin-2.css" rel="stylesheet">--}}
 
     <!-- Morris Charts CSS -->
     {{--<link href="backend/css/plugins/morris.css" rel="stylesheet">--}}
@@ -54,7 +52,7 @@
             </a>
 
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/catridge/show">Катриджи<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/cartridge/show">Катриджи<span class="sr-only">(current)</span></a></li>
                 <li><a href="/printer/show">Принтера</a></li>
                 <li><a href="/statistics">Статистика</a></li>
             </ul>
@@ -99,20 +97,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
 <script src="/../backend/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-{{--<script src="backend/js/plugins/metisMenu/metisMenu.min.js"></script>--}}
-
-<!-- Flot Charts JavaScript -->
-{{--<script src="backend/js/plugins/flot/excanvas.min.js"></script>--}}
-{{--<script src="backend/js/plugins/flot/jquery.flot.js"></script>--}}
-{{--<script src="backend/js/plugins/flot/jquery.flot.pie.js"></script>--}}
-{{--<script src="backend/js/plugins/flot/jquery.flot.resize.js"></script>--}}
-{{--<script src="backend/js/plugins/flot/jquery.flot.tooltip.min.js"></script>--}}
-{{--<script src="backend/js/plugins/flot/flot-data.js"></script>--}}
-
-<!-- Custom Theme JavaScript -->
-{{--<script src="backend/js/sb-admin-2.js"></script></body>--}}
+{{----}}
+<script src="../js/datatables/datatables.min.js"></script>
 
 @yield('scripts')
 </html>

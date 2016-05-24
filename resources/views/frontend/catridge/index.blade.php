@@ -28,32 +28,37 @@
         </div>
     </div>
 
-    <table class="table table-hover" id="tableShow">
+    {{--<table id="table_id" class="table table-hover" id="tableShow">--}}
+    <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
         <tr>
             <td class="title">#</td>
-            <td class="title">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Инв. Номер <span class="caret"></span>
-                    </button>
-                    @include('frontend.catridge._sort', ['sortType' => 'current_id'])
-                </div>
-            </td>
+            <td class="title">Инв. Номер</td>
+            {{--<td class="title">--}}
+                {{--<div class="btn-group">--}}
+                    {{--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                        {{--Инв. Номер <span class="caret"></span>--}}
+                    {{--</button>--}}
+                    {{--@include('frontend.catridge._sort', ['sortType' => 'current_id'])--}}
+                {{--</div>--}}
+            {{--</td>--}}
             <td class="title">Имя</td> {{--manifacture + model--}}
-            <td class="title">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Тип <span class="caret"></span>
-                    </button>
-                    @include('frontend.catridge._sort', ['sortType' => 'type'])
-                </div>
-            </td>
+            <td class="title">Тип</td>
+            {{--<td class="title">--}}
+                {{--<div class="btn-group">--}}
+                    {{--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                        {{--Тип <span class="caret"></span>--}}
+                    {{--</button>--}}
+                    {{--@include('frontend.catridge._sort', ['sortType' => 'type'])--}}
+                {{--</div>--}}
+            {{--</td>--}}
             <td class="title">Местоположения</td>
-            {{--<td class="title">Уст в принетер</td>--}}
             <td class="title">Мастер</td>
             <td class="title">Примечание</td>
 
         </tr>
+        <thead>
+        <tbody>
         @foreach($catridges as $key => $catridge)
             <tr>
                 <td>
@@ -68,5 +73,14 @@
                 <td>{{ $catridge->auxiliary }}</td>
             </tr>
         @endforeach
+        </tbody>
     </table>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );
+    </script>
 @endsection
