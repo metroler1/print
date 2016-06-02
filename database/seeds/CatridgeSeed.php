@@ -509,6 +509,28 @@ class CatridgeSeed extends Seeder
                 'created_at' => DB::raw('NOW()'),
             ),
 
+            array(
+                'current_id' => 2041018,
+                'manifacture' => 'HP',
+                'model' => 'Q6511X',
+                'type' => 'A',
+                'location' => 'Склад',
+                'master' => 'Владимир',
+                'updated_at' => DB::raw('NOW()'),
+                'created_at' => DB::raw('NOW()'),
+            ),
+
+            array(
+                'current_id' => 2041078,
+                'manifacture' => 'HP',
+                'model' => 'Q6511X',
+                'type' => 'A',
+                'location' => 'Склад',
+                'master' => 'Владимир',
+                'updated_at' => DB::raw('NOW()'),
+                'created_at' => DB::raw('NOW()'),
+            ),
+
 
         );
 
