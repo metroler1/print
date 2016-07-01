@@ -60,7 +60,10 @@ var app = (function(){
 		var i = 0;
 
 		var influence = $('.influence').val();
+
 		var master = $('.master').val();
+
+
 
 		$('.type_of_repair').each(function (i) {
     	    arr_type_of_repair[i] = $(this).val();
@@ -113,6 +116,17 @@ var app = (function(){
 
         //после
         // window.location.reload();
+
+        if (!influence)
+        {
+            alert('поле дата обязательно для заполнения');
+        }else{
+            var url = window.location.href;
+            window.location.href = url.replace('/add', '');
+        }
+
+
+
 
 
 

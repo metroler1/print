@@ -116,12 +116,12 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('add', 'OfficeController@store');
         });
 
-
-        Route::group(array('prefix' => 'papers'), function() {
-            Route::get('xml', 'Backend\PaperCountersController@importExport');
-            Route::post('importExcel', 'Backend\PaperCountersController@importExcel');
-            Route::resource('/', 'Backend\PaperCountersController');
-        });
+//        Route::group(array('prefix' => 'papers'), function () {
+//            Route::get('/', 'Backend\PaperCountersController@index');
+//            Route::get('add', 'Backend\PaperCountersController@add');
+//            Route::post('add', 'Backend\PaperCountersController@store');
+//        });
+        Route::resource('papers', 'Backend\PaperCountersController');
 
 	});
 

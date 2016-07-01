@@ -25,7 +25,17 @@
             </table>
         </div>
         <div class="col-md-1">
-            <a href="papers/create" type="button" class="btn btn-primary">Добавить</a>
+            <!-- Single button -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Добавить <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="papers/create">Добавить вручную</a></li>
+                    <li><a href="papers/xml">Импортировать из csv</a></li>
+                </ul>
+            </div>
+
         </div>
     </div>
 

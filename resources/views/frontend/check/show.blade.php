@@ -13,7 +13,7 @@
                 <tr>
                     <td>{{ $oneData->catridge_current_id }}</td>
                     <td>{{ $oneData->price }}</td>
-                    <td>{{ $oneData->model }}</td>
+                    <td>{{ $oneData->catridge_model }}</td>
                 </tr>
 
             @endforeach

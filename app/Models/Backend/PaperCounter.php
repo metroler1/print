@@ -12,4 +12,6 @@ class PaperCounter extends Model
     {
         $query->groupBy('influence');
     }
+
+    
 }

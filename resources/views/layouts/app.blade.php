@@ -16,7 +16,10 @@
 
     <link href="/../css/style.css" rel="stylesheet">
 
-    <link href="../css/datatables/datatables.min.css" rel="stylesheet">
+    <link href="/../css/datatables/datatables.min.css" rel="stylesheet">
+
+    <link href="/../css/bootstrap-datepicker3/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="/../css/bootstrap-datepicker3/bootstrap-datepicker.min.css.map" rel="stylesheet">
 
 
     <style>
@@ -99,8 +102,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="/../js/function.js"></script>
-    <script src="../js/table.js"></script>
-    <script src="../js/datatables/datatables.min.js"></script>
+    <script src="/../js/table.js"></script>
+    <script src="/../js/datatables/datatables.min.js"></script>
+    <script src="/../js/bootstrap-datepicker.min.js"></script>
 
     @yield('scripts')
 </body>

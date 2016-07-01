@@ -5,9 +5,13 @@
 
     RewriteEngine On
 
+    #RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    #RewriteRule ^print/public/$ http://%{HTTP_HOST}/print/ [R=301,L]
+    #RewriteRule ^print/$ /print/public/ [L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+   RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

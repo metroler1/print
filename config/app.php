@@ -158,6 +158,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+		//Ecxel
+		Maatwebsite\Excel\ExcelServiceProvider::class,
+
+
+//		Помогает на уровне загрузок
+		Codesleeve\LaravelStapler\Providers\L5ServiceProvider::class,
     ],
 
     /*
@@ -205,7 +211,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 		'Form'		=> Illuminate\Html\FormFacade::class,
 
-
+		'Excel' 	=> Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

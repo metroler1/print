@@ -44,7 +44,7 @@ class CheckController extends Controller
 		$check->catridge_current_id = $request->catridge_current_id;
 		$check->price = $request->price;
 		$check->master = $request->master;
-		$check->influence = $request->influence;
+		$check->influence = strtotime($request->influence);
 		$check->type_of_repair = $request->type_of_repair;
 		
 		$check->save();

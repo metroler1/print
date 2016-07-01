@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-
+use App\Item;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\PaperCounter;
 use App\Models\Printer;
+use DB;
+use Excel;
 use App\Http\Requests\Backend\PaperCountersRequest as PaperCountersRequest;
 
 
@@ -54,4 +57,31 @@ class PaperCountersController extends Controller
 
         return redirect('manager/papers');
     }
+
+    public function importExport()
+    {        
+        return view('backend.paper.xml');
+    }
+
+    public function importExcel()
+    {
+//        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    $insert[] = ['title' => $value->title, 'description' => $value->description];
+                }
+                if(!empty($insert)){
+                    DB::table('item')->insert($insert);
+                    dd('Insert Record successfully.');
+                }
+            }
+//        }else{
+//            dd('fsfsd');
+//        }
+        return back();
+    }
+
 }

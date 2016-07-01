@@ -35,9 +35,9 @@ class StatisticsController extends Controller
 //
 //                                ->get();
 
-
             $datepickerfrom = strtotime($request->datepickerfrom);
             $datepickerto = strtotime($request->datepickerto);
+           
 
             $paper_counters = DB::select(
                                 "SELECT device_name, SUM(number_of) as number_of, influence FROM paper_counters WHERE influence BETWEEN ? AND ? group by device_name", array($datepickerfrom, $datepickerto));
