@@ -1,5 +1,14 @@
 @extends('backend.layouts.app')
 
+@section('styles')
+    <style>
+        .btn-group{
+            margin-bottom: 65%;
+            display: block;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-8 right-button-line">
@@ -34,7 +43,12 @@
             </table>
         </div>
         <div class="col-md-1">
-            <a href="cartridge/create" type="button" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-plus"></i></a>
+            <div class="btn-group">
+                <a href="cartridge/create" type="button" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-plus"></i></a>
+            </div>
+            <div class="btn-group">
+                <a href="cartridge/service" type="button" class="btn btn-primary">Службы</a>
+            </div>
         </div>
     </div>
 

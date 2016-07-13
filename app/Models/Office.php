@@ -8,4 +8,5 @@ class Office extends Model
 {
     protected $table = 'office';
     protected $fillable = ['office_name', 'image_path'];
+
 }

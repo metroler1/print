@@ -6,13 +6,13 @@
             </div>
 
 
-            <form action="/manager/type" method="POST">
+            <form action="/manager/cartridge/service" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <!-- Task Name -->
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="type" id="type" class="form-control" placeholder="Добавить тип" required>
+                            <input type="text" name="name" id="cartridge_service_name" class="form-control" placeholder="Добавить службу" required>
                         </div>
                     </div>
 

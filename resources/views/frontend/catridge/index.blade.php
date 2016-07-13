@@ -35,12 +35,12 @@
             <td class="title">#</td>
             <td class="title">Инв. Номер</td>
             {{--<td class="title">--}}
-                {{--<div class="btn-group">--}}
-                    {{--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                        {{--Инв. Номер <span class="caret"></span>--}}
-                    {{--</button>--}}
-                    {{--@include('frontend.catridge._sort', ['sortType' => 'current_id'])--}}
-                {{--</div>--}}
+            {{--<div class="btn-group">--}}
+            {{--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+            {{--Инв. Номер <span class="caret"></span>--}}
+            {{--</button>--}}
+            {{--@include('frontend.catridge._sort', ['sortType' => 'current_id'])--}}
+            {{--</div>--}}
             {{--</td>--}}
             <td class="title">Имя</td> {{--manifacture + model--}}
             <td class="title">Тип</td>

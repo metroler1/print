@@ -24,7 +24,7 @@ class CheckRequest extends Request
 	public function rules()
 	{
 		return [
-			'price' => 'integer|required',
+			'price' => 'required',
 			'master' => 'required',
 			// 'catridge_model' => 'required'
 		];
@@ -33,7 +33,6 @@ class CheckRequest extends Request
 	public function messages()
 	{
 		return [
-			'price.integer' => 'цена указывается в числововом эквиваленте',
 			'price.required' => 'цена обязательно должно быть заполнено',
 			'master.required' => 'Имя мастера обязательно должно быть заполнено',
 			// 'catridge_model.required' => 'Модель катриджа обязательно должно быть заполнено'

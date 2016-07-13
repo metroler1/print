@@ -13,8 +13,8 @@
                         <td>{{ ++$key }}</td>
                         <td>{{ $record->master_name }}</td>
                         <td>
-                            <a href="" type="button" data-toggle="modal" data-target="#editModal"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="" type="button" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                            <a href="{{ $record->id }}" type="button" data-toggle="modal" data-target="#editModal"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="{{ $record->id }}" type="button" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove-circle"></i></a>
                         </td>
                     </tr>
                 @endforeach

@@ -7,11 +7,9 @@
       <schema-pattern>strprinter.*</schema-pattern>
       <default-schemas>strprinter.*</default-schemas>
     </data-source>
-    <data-source name="MySQL - bank@localhost" uuid="90cf0e3f-d5e0-47ac-aa90-c709850d27c8">
-      <secret-storage>master_key</secret-storage>
+    <data-source name="MySQL - strprint_db@192.168.11.23" uuid="2b132b73-4aaa-42b5-a19a-7be63b8e2023">
+      <secret-storage>memory</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>bank.*</schema-pattern>
-      <default-schemas>bank.*</default-schemas>
     </data-source>
   </component>
 </project>

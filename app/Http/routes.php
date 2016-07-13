@@ -63,8 +63,6 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('check/add', 'CheckController@add');
 		Route::post('check/add', 'CheckController@store');
 		Route::patch('check/add', 'CheckController@giveData');
-		
-
 	});
 
     Route::group(array('prefix' => 'statistics'), function()
@@ -77,6 +75,8 @@ Route::group(['middleware' => 'web'], function () {
     {
         Route::get('/', 'WifiController@index');
     });
+
+
 //!!!!!!admin_panel!!!!!!!!!
 	Route::group(array('prefix' => 'manager'), function()
 	{
@@ -93,14 +93,12 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('printer', 'Backend\PrinterController');
 
-        Route::resource('cartridge', 'Backend\CartridgeController');
 
-//		Route::get('addprinter', 'PrinterController@add');
-//		Route::post('addprinter', 'PrinterController@store');
+        Route::group(array('prefix' => 'cartridge'), function(){
+            Route::resource('/', 'Backend\CartridgeController');
+            Route::resource('service', 'Backend\TypeOfServiceOnCartridgeController');
+        });
 
-
-//		Route::get('addcatridge', 'CatridgeController@add');
-//		Route::post('addcatridge', 'CatridgeController@store');
 
 		Route::group(array('prefix' => 'place'), function()
 		{
@@ -111,9 +109,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('master', 'Backend\MasterController');
 
         Route::group(array('prefix' => 'office'), function () {
-            Route::get('/', 'OfficeController@index');
-            Route::get('add', 'OfficeController@add');
-            Route::post('add', 'OfficeController@store');
+            Route::resource('/', 'Backend\OfficeController');
+            Route::get('/{id}', 'Backend\OfficeController@show');
+            Route::get('/{id}/edit', 'Backend\OfficeController@edit');
         });
 
 
@@ -122,6 +120,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('importExcel', 'Backend\PaperCountersController@importExcel');
             Route::resource('/', 'Backend\PaperCountersController');
         });
+
 
 	});
 

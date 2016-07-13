@@ -7,24 +7,24 @@
 
 
             {!! Form::model($record, ['method' => 'patch', 'action' => ['Backend\TypeController@update', $record->id]]) !!}
-                {{ csrf_field() }}
-                <div class="modal-body">
-                    <!-- Task Name -->
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            {!! Form::text('type', null, ['class' => 'form-control', 'required']) !!}
-                        </div>
+            {{ csrf_field() }}
+            <div class="modal-body">
+                <!-- Task Name -->
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        {!! Form::text('type', null, ['class' => 'form-control', 'required']) !!}
                     </div>
-
-                    <!-- Add Task Button -->
-
                 </div>
-                <div class="modal-footer type">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">закрыть</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> изменить
-                    </button>
-                </div>
+
+                <!-- Add Task Button -->
+
+            </div>
+            <div class="modal-footer type">
+                <button type="button" class="btn btn-default" data-dismiss="modal">закрыть</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> изменить
+                </button>
+            </div>
             {!! Form::close() !!}
 
 

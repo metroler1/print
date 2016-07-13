@@ -17,7 +17,7 @@
                                 {{$key + 1}}
                             </td>
                             <td>
-                                <a href="{{ action('CheckController@show', [$checkCreates->influence]) }}">{{ date('Y-m-d', $checkCreates->influence) }}</a>
+                                <a href="{{ action('CheckController@show', [$checkCreates->influence]) }}">{{ date('d-m-Y', $checkCreates->influence) }}</a>
                             </td>
                         </tr>
                     @endforeach
@@ -36,7 +36,7 @@
                                 {{$key + 1}}
                             </td>
                             <td>
-                                <a href="{{ action('CheckController@show', [$checkCreateSecondMasters->influence]) }}">{{ date('Y-m-d',$checkCreateSecondMasters->influence) }}</a>
+                                <a href="{{ action('CheckController@show', [$checkCreateSecondMasters->influence]) }}">{{ date('d-m-Y',$checkCreateSecondMasters->influence) }}</a>
                             </td>
                         </tr>
                     @endforeach
