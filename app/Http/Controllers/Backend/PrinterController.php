@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Printer;
 use Illuminate\Http\Request;
 use App\Models\Type;
-use App\Models\Manifacture;
+use App\Models\Backend\Manifacture;
 use App\Models\Place;
 use App\Models\Master;
 use App\Http\Requests;

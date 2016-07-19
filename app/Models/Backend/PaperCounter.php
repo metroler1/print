@@ -6,11 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaperCounter extends Model
 {
-    protected $fillable = ['device_name', 'number_of', 'notice'];
+//    protected $fillable = ['device_name', 'number_of', 'notice'];
 
-    public function scopeGetDataDate($query)
+    protected $fillable = ['user_name', 'pages', 'copies', 'date_dispatch', 'computer_name', 'printer_name'];
+
+//    public function scopeGetDataDate($query)
+//    {
+//        $query->groupBy('influence');
+//    }
+  
+
+    public function scopeGetFullData($query)
     {
-        $query->groupBy('influence');
+        $query->orderBy('user_name');
+    }
+
+    public function scopeGetDispatchDate($query)
+    {
+        $query->select('date_dispatch');
     }
 
     

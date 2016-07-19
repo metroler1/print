@@ -8,17 +8,24 @@
                 <thead>
                 <tr>
                     <td class="title">#</td>
+                    <td class="">имя пользователя</td>
+                    <td class="">кол-во страниц</td>
+                    <td class="">кол-во копий</td>
+                    <td class="">дата печати</td>
+                    <td class="">имя компьютера</td>
+                    <td class="">имя принтера</td>
                 </tr>
                 <thead>
                 <tbody>
                 @foreach($data as $key => $record)
                     <tr>
-                        <td>
-                            {{ ++$key }}
-                        </td>
-                        <td>
-                            <a href="{{ '/manager/papers/' . $record->id }}">{{ date('Y-m-d', $record->influence) }}</a>
-                        </td>
+                        <td>{{ ++$key }}</td>
+                        <td>{{ $record->user_name }}</td>
+                        <td>{{ $record->pages }}</td>
+                        <td>{{ $record->copies }}</td>
+                        <td>{{ $record->date_dispatch }}</td>
+                        <td>{{ $record->computer_name }}</td>
+                        <td>{{ $record->printer_name }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -32,7 +39,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="papers/create">Добавить вручную</a></li>
-                    <li><a href="papers/xml">Импортировать из csv</a></li>
+                    <li><a href="papers/xml">Импортировать из txt</a></li>
                 </ul>
             </div>
 

@@ -63,6 +63,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('check/add', 'CheckController@add');
 		Route::post('check/add', 'CheckController@store');
 		Route::patch('check/add', 'CheckController@giveData');
+		
 	});
 
     Route::group(array('prefix' => 'statistics'), function()
@@ -88,8 +89,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('type', 'Backend\TypeController');
 		
 
-		Route::get('addmanifacture', 'ManifactureController@add');
-		Route::post('addmanifacture', 'ManifactureController@store');
+//		Route::get('manifacture', 'ManifactureController@add');
+		Route::post('manifacture', 'Backend\ManifactureController@store');
+		Route::get('manifacture', 'Backend\ManifactureController@index');
 
         Route::resource('printer', 'Backend\PrinterController');
 

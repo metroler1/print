@@ -18,17 +18,10 @@ class PaperCountersController extends Controller
 {
     public function index()
     {
-        $data = PaperCounter::getDataDate()->get();
+        $data = PaperCounter::getFullData()->get();
         return view('backend.paper.index', compact('data'));
     }
 
-//    public function add()
-//    {
-//        $printeres = Printer::printerWithIp()->get();
-//
-//        return view('backend.paper.add', compact('printeres'));
-//
-//    }
 
     public function create()
     {
@@ -63,25 +56,89 @@ class PaperCountersController extends Controller
         return view('backend.paper.xml');
     }
 
+    private function isValue($var_name, $val, $start_iter)
+    {
+
+    }
+
     public function importExcel()
     {
-//        if(Input::hasFile('import_file')){
-            $path = Input::file('import_file')->getRealPath();
-            $data = Excel::load($path, function($reader) {
-            })->get();
-            if(!empty($data) && $data->count()){
-                foreach ($data as $key => $value) {
-                    $insert[] = ['title' => $value->title, 'description' => $value->description];
+//        проверяем на существование файла
+       if(Input::hasFile('import_file')) {
+
+//           получаем его путь
+           $path = Input::file('import_file')->getRealPath();
+
+//           получаем массив не отсортированных данных
+           $homepage = file($path);
+
+
+            //делаем выборку из базы
+           $date_dispatch = PaperCounter::getDispatchDate()->lists('date_dispatch');
+           $date_dispatch = $date_dispatch->toArray();
+
+
+
+//           count($homepage) -- кол-во элементов массив &&  начинаем перебор со второго элемента в начале идут не нужные данные
+           for($i = 2; $i < count($homepage); $i++)
+           {
+               //получаем разбиваем строку на индексированный массив с разделителем пробел
+               $str = explode(" ", $homepage[$i]);
+               //убираем постые элементы
+               $new_array = array_diff($str, array(''));
+//               заново индексируем
+               list($keys, $values) = array_divide($new_array);
+
+//              цифра 7 взята, чтобы исключить массивы только с одним элеметом в других используется 7 и более
+                if (count($values) >= 7)
+                {
+                    $timestamp = $values[3] . ' ' . $values[4];
+
+                    $printer = $values[6] . ' ' . $values[7];
+
+                    $k = 7;
+                    while (isset($values[$k]))
+                    {
+                        $printer = $printer . ' ' . $values[$k];
+
+                        $k++;
+                    }
+
+                    //преобразуем время в unix-time
+                    $timestamp = strtotime($timestamp);
+//                    попадаются путсые ячейки с типом булин => не записываем их в базу
+                    if (gettype($timestamp) != 'boolean')
+                    {
+//                        если в базе таких значений нет формируем массив для записи в бд
+                        $search_result = array_search($timestamp, $date_dispatch);
+                        if (!$search_result)
+                        {
+                            $data[$i] = [
+                                'user_name' => $values[0],
+                                'pages' => $values[1],
+                                'copies' => $values[2],
+                                'date_dispatch' => $timestamp,
+                                'computer_name' => $values[5],
+                                'printer_name' => $printer
+
+                            ];
+                        }else{
+                            dd('Эти данные уже есть в базе');
+                        }
+
+                    }
+
                 }
-                if(!empty($insert)){
-                    DB::table('item')->insert($insert);
-                    dd('Insert Record successfully.');
-                }
-            }
-//        }else{
-//            dd('fsfsd');
-//        }
-        return back();
+           }
+
+           if(!empty($data)){
+               DB::table('paper_counters')->insert($data);
+               return redirect('/manager/papers');
+           }
+
+
+       }
+
     }
 
 }

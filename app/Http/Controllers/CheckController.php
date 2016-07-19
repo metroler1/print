@@ -74,12 +74,15 @@ class CheckController extends Controller
 
         $cartridge_service = DB::table('type_of_service_on_cartridges')->select('name')->lists('name');
 
+        $cartridge_model = DB::table('catridges')->select('model')->distinct()->lists('model');
 
-        $data = [$office_name, $cartridge_service];
+        $manifacture = DB::table('manifacture')->select('manifacture')->lists('manifacture');
+
+
+        $data = [$office_name, $cartridge_service, $cartridge_model, $manifacture];
         
 
         return response()->json($data);
-
 	}
     
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Models\Catridge;
-use App\Models\Manifacture;
+use App\Models\Backend\Manifacture;
 use App\Models\Type;
 use App\Models\Master;
 use App\Http\Requests;

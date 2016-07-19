@@ -5,6 +5,7 @@
 
     RewriteEngine On
 
+
     #RewriteCond %{ENV:REDIRECT_STATUS} ^$
     #RewriteRule ^print/public/$ http://%{HTTP_HOST}/print/ [R=301,L]
     #RewriteRule ^print/$ /print/public/ [L]

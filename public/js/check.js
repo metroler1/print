@@ -3,6 +3,7 @@ var app = (function(){
     //инициализируем переменную для счетчика функции success в ajax
     var currentCount = 0;
 
+
     // получаем список выполняемых работ мастерами
     var getListTypeOfRepair = function(){
 
@@ -20,37 +21,71 @@ var app = (function(){
                 console.log(response);
                 var office_name = "";
                 var cartridge_service = "";
+                var catridge_model = "";
+                var manifacture = "";
+
                 for(var i = 0; i < response[0].length; i++)
                 {
                     //спиоск офисов получаемых из сервера
                     office_name += '<option value="'+ response[0][i] +'">' + response[0][i] + '</option>';
                 }
+
                 for(var i = 0; i < response[1].length; i++)
                 {
                     //список действий над картриджами
                     cartridge_service += '<option value="'+ response[1][i] +'">' + response[1][i] + '</option>';
                 }
+
+                for(var i = 0; i < response[2].length; i++)
+                {
+                    catridge_model +=  '<li><a href="">' + response[2][i] + '</a></li>';
+                }
+
+                for (var i = 0; i < response[3].length; i++)
+                {
+                    manifacture +=  '<option value="'+ response[3][i] +'">' + response[3][i] + '</option>';
+                }
+
                 //
-                $('form').append(
-                    '<div class="form-group form-inline">' +
-                    '<select class="type_of_repair form-control" name="type_of_repair"<option value=""></option>' + cartridge_service + '</select>' +
-                    '<input class="catridge_current_id form-control"' +
-                    'name="catridge_current_id"' +
-                    'type="text" placeholder="Инв. номер" value="20410">' +
-                    ' ' +
-                    '<input name="price" class="price form-control" type="text" placeholder="Цена">' +
-                    '<input class="catridge_model form-control"' +
-                    'name="catridge_model"' +
-                    'type="text" placeholder="Модель катриджа">' +
-                    '<select class="check_office form-control" name="office" <option value=""></option>' + office_name +'</select>' +
+                $.when($('form').append(
+                    '<div class="form-group form-inline this">' +
+                        '<select class="type_of_repair form-control" name="type_of_repair"<option value=""></option>' + cartridge_service + '</select>' +
+                        ' ' +
+                        '<input class="catridge_current_id form-control" name="catridge_current_id" type="text" placeholder="Инв. номер" value="">' +
+                        ' ' +
+                        '<input name="price" class="price form-control" type="text" placeholder="Цена">' +
+                        ' ' +
+                        '<select class="manifacture form-control" name="manifacture" <option value=""></option>' + manifacture +'</select>' +
+                        ' ' +
+                        '<div class="btn-group" style="display: inline-block">' +
+                            '<input class="catridge_model form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' +
+                                'name="catridge_model" type="text" placeholder="Модель катриджа">' +
+                                '<ul class="dropdown-menu" aria-labelledby="dLabel">' + catridge_model + '</ul>' +
+                        '</div>' +
+                        ' ' +
+                        '<select class="check_office form-control" name="office" <option value=""></option>' + office_name +'</select>' +
+                        '<a id="" class="remove-button"><i class="glyphicon glyphicon-remove-circle"></i></a>' +
                     '</div>'
-                );
+                )).done(function () {
+                    console.log(catridge_model);
+                });
+                //для удаление одной формы
+                $('.remove-button:last').click(function (e) {
+                    $(this).parent().remove();
+                });
+
+
+
+                // $('.catridge_model:last').focus(function () {
+                //     $('.dropdown-toggle').dropdown();
+                // });
+
             }
         });
     }
 
-    console.log(getListTypeOfRepair());
 
+    console.log(getListTypeOfRepair());
 
     //создания счета
     $('#sendAjaxData').bind('click',  function(e) {
@@ -71,12 +106,10 @@ var app = (function(){
 
         $('.type_of_repair').each(function (i) {
             arr_type_of_repair[i] = $(this).val();
-
         });
 
         $('.catridge_current_id').each(function (i) {
             arr_catridge_current_id[i] = $(this).val();
-
         });
 
         $('.price').each(function (i) {
@@ -85,7 +118,6 @@ var app = (function(){
 
         $('.catridge_model').each(function (i) {
             arr_catridge_model[i] = $(this).val();
-            console.log(i);
         });
 
         $('.check_office').each(function (i) {
@@ -111,6 +143,7 @@ var app = (function(){
                     headers: {
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     },
+                    // async: false,
                     data: {
                         influence: influence,
                         master: master,
@@ -142,10 +175,7 @@ var app = (function(){
 
             }
         }
-
     });
-
-
 //	add new fields in bills
 
     $('#bill_addAttr').bind('click', function (e) {
@@ -153,7 +183,8 @@ var app = (function(){
 
         // форма для создания счета
         getListTypeOfRepair();
-
     });
 
 })();
+
+

@@ -54,6 +54,19 @@ td.title{
     margin-top: 6%;
 }
 
+.remove-button{
+   text-decoration: none;
+    margin-left: 5%;
+    font-size: 125%;
+    color: #DFDFDF;
+    cursor: pointer;
+}
+
+.remove-button:hover{
+    text-decoration: none;
+}
+
+
 /*SORT*/
 .sort li{
     text-align: center;
