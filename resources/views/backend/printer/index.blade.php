@@ -15,6 +15,7 @@
                     <td class="title">ip</td>
                     <td class="title">Мастер</td>
                     <td class="title">Примечание</td>
+                    <td class="title">Действие</td>
 
                 </tr>
                 </thead>
@@ -25,13 +26,16 @@
                             {{ ++$key }}
                         </td>
                         <td><a href="{{ action('PrinterController@show', [$printers->id]) }}">{{ $printers->current_id }}</a></td>
-                        <td>{{ $printers->manifacture }}</td>
+                        <td>{{ $printers->manifacture->manifacture }}</td>
                         <td>{{ $printers->model }}</td>
-                        <td>{{ $printers->type }}</td>
+                        <td>{{ $printers->type->type }}</td>
                         <td>{{ $printers->place }}/{{$printers->room}}/{{$printers->person}}</td>
                         <td>{{ $printers->ip }}</td>
-                        <td>{{ $printers->master }}</td>
+                        <td>{{ $printers->master->master_name }}</td>
                         <td>{{ $printers->auxiliary }}</td>
+                        <td>
+                            <a href={{ 'printer/' . $printers->id . '/edit' }}><i class="glyphicon glyphicon-edit"></i></a>
+                        </td>
                     </tr>
                 @endforeach
                 <tbody>

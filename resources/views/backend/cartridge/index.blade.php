@@ -22,7 +22,7 @@
                     <td class="title">Местоположения</td>
                     <td class="title">Мастер</td>
                     <td class="title">Примечание</td>
-
+                    <td class="title">Действие</td>
                 </tr>
                 <thead>
                 <tbody>
@@ -32,11 +32,15 @@
                             {{ ++$key }}
                         </td>
                         <td><a href="{{ action('CatridgeController@show', [$catridge->id]) }}">{{ $catridge->current_id }}</a></td>
-                        <td>{{ $catridge->manifacture}} ({{  $catridge->model }})</td>
-                        <td>{{ $catridge->type }}</td>
+                        <td>{{ $catridge->manifacture->manifacture }} ({{  $catridge->model }})</td>
+                        <td>{{ $catridge->type->type }}</td>
                         <td>{{ $catridge->location }}</td>
-                        <td>{{ $catridge->master }}</td>
+                        <td>{{ $catridge->master->master_name }}</td>
                         <td>{{ $catridge->auxiliary }}</td>
+                        <td>
+                            <a href={{ 'cartridge/' . $catridge->id . '/edit' }}><i class="glyphicon glyphicon-edit"></i></a>
+                        </td>
+
                     </tr>
                 @endforeach
                 </tbody>

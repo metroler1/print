@@ -3,9 +3,10 @@ var app = (function(){
     //инициализируем переменную для счетчика функции success в ajax
     var currentCount = 0;
 
-
     // получаем список выполняемых работ мастерами
     var getListTypeOfRepair = function(){
+
+
 
         // получаем данные из сервера
         $.ajax({
@@ -46,7 +47,7 @@ var app = (function(){
                     manifacture +=  '<option value="'+ response[3][i] +'">' + response[3][i] + '</option>';
                 }
 
-                //
+                //рендим форму для заполнения счета
                 $.when($('form').append(
                     '<div class="form-group form-inline this">' +
                         '<select class="type_of_repair form-control" name="type_of_repair"<option value=""></option>' + cartridge_service + '</select>' +
@@ -60,7 +61,7 @@ var app = (function(){
                         '<div class="btn-group" style="display: inline-block">' +
                             '<input class="catridge_model form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' +
                                 'name="catridge_model" type="text" placeholder="Модель катриджа">' +
-                                '<ul class="dropdown-menu" aria-labelledby="dLabel">' + catridge_model + '</ul>' +
+                                '<ul id="check_autocomplete" class="dropdown-menu" aria-labelledby="dLabel">' + catridge_model + '</ul>' +
                         '</div>' +
                         ' ' +
                         '<select class="check_office form-control" name="office" <option value=""></option>' + office_name +'</select>' +
@@ -68,6 +69,8 @@ var app = (function(){
                     '</div>'
                 )).done(function () {
                     console.log(catridge_model);
+
+                    
                 });
                 //для удаление одной формы
                 $('.remove-button:last').click(function (e) {
@@ -75,10 +78,17 @@ var app = (function(){
                 });
 
 
+                // по клику из выпадающего списка input получаем значение
+                var getUl = $('ul#check_autocomplete>li>a');
+                var inputAuto = $('input.catridge_model:last');
+                getUl.click(function (e) {
+                    e.preventDefault();
+                    var that = $(this).parent().parent().parent().find('input');
+                    console.log(that);
+                    var thisModel  = $(this).text();
+                    inputAuto.val(thisModel);
+                });
 
-                // $('.catridge_model:last').focus(function () {
-                //     $('.dropdown-toggle').dropdown();
-                // });
 
             }
         });
@@ -95,6 +105,7 @@ var app = (function(){
         var arr_price = new Array();
         var arr_catridge_model = new Array();
         var arr_office = new Array();
+        var arr_manifacture = new Array();
 
         var i = 0;
 
@@ -124,6 +135,10 @@ var app = (function(){
             arr_office[i] = $(this).val();
         });
 
+        $('.manifacture').each(function (i) {
+            arr_manifacture[i] = $(this).val();
+        });
+
         if (!influence)
         {
             alert('поле дата обязательно для заполнения');
@@ -134,8 +149,10 @@ var app = (function(){
                 var type_of_repair = arr_type_of_repair[i];
                 var catridge_current_id = arr_catridge_current_id[i];
                 var price = arr_price[i];
+                var manifact = arr_manifacture[i];
                 var catridge_model = arr_catridge_model[i];
                 var office = arr_office[i];
+
 
                 $.ajax({
                     type: "POST",
@@ -150,6 +167,7 @@ var app = (function(){
                         type_of_repair: type_of_repair,
                         catridge_current_id: catridge_current_id,
                         price: price,
+                        manifact: manifact,
                         catridge_model: catridge_model,
                         office: office
                     },
@@ -166,7 +184,8 @@ var app = (function(){
                         }
                     },
                     error: function (msg) {
-                        console.log(msg)
+                        console.log(msg);
+                        console.log(manifact);
                     }
                 });
 
@@ -181,10 +200,17 @@ var app = (function(){
     $('#bill_addAttr').bind('click', function (e) {
         e.preventDefault();
 
-        // форма для создания счета
-        getListTypeOfRepair();
+        var input = $('input.catridge_model:last').val();
+
+        //проверяем чтобы поле модель не было пустым при добавлении новой
+        if (input.length > 0)
+        {
+            // форма для создания счета
+            getListTypeOfRepair();
+        }else{
+            alert('Поле "Модель картриджа" должно быть заполнено ');
+        }
+
     });
 
 })();
-
-

@@ -93,11 +93,18 @@ Route::group(['middleware' => 'web'], function () {
 		Route::post('manifacture', 'Backend\ManifactureController@store');
 		Route::get('manifacture', 'Backend\ManifactureController@index');
 
-        Route::resource('printer', 'Backend\PrinterController');
+        Route::group(array('prefix' => 'printer'), function(){
+            Route::resource('/', 'Backend\PrinterController');
+            Route::get('{id}/edit', 'Backend\PrinterController@edit');
+            Route::patch('show/{id}', 'Backend\PrinterController@update');
+        });
+//        Route::resource('printer', 'Backend\PrinterController');
 
 
         Route::group(array('prefix' => 'cartridge'), function(){
             Route::resource('/', 'Backend\CartridgeController');
+            Route::get('{id}/edit', 'Backend\CartridgeController@edit');
+            Route::patch('show/{id}', 'Backend\CartridgeController@update');
             Route::resource('service', 'Backend\TypeOfServiceOnCartridgeController');
         });
 
@@ -121,6 +128,19 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('xml', 'Backend\PaperCountersController@importExport');
             Route::post('importExcel', 'Backend\PaperCountersController@importExcel');
             Route::resource('/', 'Backend\PaperCountersController');
+        });
+
+        Route::group(array('prefix' => 'users'), function() {
+            Route::get('/', 'Backend\UserController@index');
+            Route::get('{id}/edit', 'Backend\UserController@edit');
+            Route::patch('{id}', 'Backend\UserController@update');
+            Route::get('create', 'Backend\UserController@create');
+            Route::post('create', 'Backend\UserController@store');
+        });
+
+        Route::group(array('prefix' => 'printserver'), function() {
+            Route::get('/', 'Backend\PrintServerController@index');
+            Route::post('/', 'Backend\PrintServerController@store');
         });
 
 

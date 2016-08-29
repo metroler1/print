@@ -14,7 +14,7 @@
                     {{--@include('frontend.printer._sort', ['sortType' => 'current_id'])--}}
                 {{--</div>--}}
             {{--</td>--}}
-            <td class="title">Имя</td> {{--manifacture + model--}}
+            {{--<td class="title">Производитель</td> --}}{{--manifacture + model--}}
             <td class="title">Модель</td>
             <td class="title">Тип</td>
             {{--<td class="title">--}}
@@ -40,12 +40,12 @@
                    {{ ++$key }}
                 </td>
                 <td><a href="{{ action('PrinterController@show', [$printers->id]) }}">{{ $printers->current_id }}</a></td>
-                <td>{{ $printers->manifacture }}</td>
-                <td>{{ $printers->model }}</td>
-                <td>{{ $printers->type }}</td>
+                <td>{{ $printers->manifacture->manifacture . ' ' . $printers->model}}</td>
+
+                <td>{{ $printers->type->type }}</td>
                 <td>{{ $printers->place }}/{{$printers->room}}/{{$printers->person}}</td>
                 <td>{{ $printers->ip }}</td>
-                <td>{{ $printers->master }}</td>
+                <td>{{ $printers->master->master }}</td>
                 <td>{{ $printers->auxiliary }}</td>
             </tr>
         @endforeach

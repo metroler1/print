@@ -1,12 +1,13 @@
 @extends('backend.layouts.app')
 
 @section('content')
+
 @include('errors.list')
 
 <div class="panel-body">
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(array('action' => array('Backend\CartridgeController@store'), 'method' => 'post', 'class' => 'form-horizontal')) !!}
+            {!! Form::model($catridges, ['method' => 'patch', 'action' => ['Backend\CartridgeController@update', $catridges->id], 'class' => 'form-horizontal']) !!}
 
             <div class="form-group">
                 <label for="current_id" class="col-sm-3 control-label">Инвертарный номер</label>
@@ -39,12 +40,12 @@
             <div class="form-group">
                 <label for="location" class="col-sm-3 control-label">Офис</label>
                 <div class="col-sm-6">
-                    {!! Form::select('location', $office_name, null, ['class' => 'form-control office']) !!}
+                    {!! Form::select('location', $office_name, null, ['class' => 'form-control location']) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="place" class="col-sm-3 control-label">Мастер</label>
+                <label for="master" class="col-sm-3 control-label">Мастер</label>
                 <div class="col-sm-6">
                     {!! Form::select('master_id', $masters, null, ['class' => 'form-control master']) !!}
                 </div>
@@ -59,9 +60,10 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    {!! Form::submit('add', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('edit', ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>
+
             {!! Form::close() !!}
 
         </div>

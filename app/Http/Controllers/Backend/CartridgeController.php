@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Models\Catridge;
 use App\Models\Backend\Manifacture;
-use App\Models\Type;
-use App\Models\Master;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CatridgesRequest as CatridgesRequest;
+use App\Helpers\PoolObj;
 
 class CartridgeController extends Controller
 {
@@ -16,21 +17,52 @@ class CartridgeController extends Controller
     {
         $catridges = Catridge::all();
 
+//        $master = Catridge::find(1)->master;
+
         return view('backend.cartridge.index', compact('catridges'));
     }
 
     public function create()
     {
-        $manifactures = Manifacture::all();
-        $types = Type::all();
-        $masters = Master::all();
+        $manifactures = PoolObj::getSome('manifactureObj')->lists('manifacture', 'id');
+        $type = PoolObj::getSome('typeObj')->lists('type', 'id');
+        $masters = PoolObj::getSome('masterObj')->lists('master_name', 'id');
 
-        return view('backend.cartridge.add', [
-            'manifactures' => $manifactures,
-            'types' => $types,
-            'masters' => $masters
-        ]);
+        $office_name = DB::table('office')->select('office_name')->lists('office_name', 'office_name');
+
+        return view('backend.cartridge.add', compact('manifactures', 'type', 'masters', 'office_name'));
     }
+
+    public function edit($id)
+    {
+        $catridges = Catridge::findOrFail($id);
+
+
+        $masters = PoolObj::getSome('masterObj')->lists('master_name', 'id');
+
+        $type = PoolObj::getSome('typeObj')->lists('type', 'id');
+
+
+
+        $manifactures = PoolObj::getSome('manifactureObj')->lists('manifacture', 'id');
+        $office_name = PoolObj::getSome('officeObj')->lists('office_name', 'office_name');
+
+//        $office_name = DB::table('office')->select('office_name')->lists('office_name', 'office_name');
+
+
+        return view('backend.cartridge.edit', compact('catridges', 'masters', 'type', 'manifactures', 'office_name'));
+    }
+
+    public function update($id, CatridgesRequest $request)
+    {
+        $catridges = Catridge::findOrFail($id);
+
+        $catridges->update($request->all());
+
+        return redirect('/manager/cartridge');
+
+    }
+
 
     public function store(Request $request)
     {

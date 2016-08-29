@@ -27,6 +27,8 @@ class PaperCountersController extends Controller
     {
         $printeres = Printer::printerWithIp()->get();
 
+
+
         return view('backend.paper.add', compact('printeres'));
     }
 
@@ -52,8 +54,10 @@ class PaperCountersController extends Controller
     }
 
     public function importExport()
-    {        
-        return view('backend.paper.xml');
+    {
+        $printserver = DB::table('print_serveres')->select('name')->lists('name');
+
+        return view('backend.paper.xml', compact('printserver'));
     }
 
     private function isValue($var_name, $val, $start_iter)
@@ -61,8 +65,10 @@ class PaperCountersController extends Controller
 
     }
 
-    public function importExcel()
+    public function importExcel(Request $request)
     {
+
+        $paperCounter = new PaperCounter;
 //        проверяем на существование файла
        if(Input::hasFile('import_file')) {
 
@@ -76,6 +82,9 @@ class PaperCountersController extends Controller
             //делаем выборку из базы
            $date_dispatch = PaperCounter::getDispatchDate()->lists('date_dispatch');
            $date_dispatch = $date_dispatch->toArray();
+
+           $computer_name = PaperCounter::getComputerName()->lists('computer_name');
+           $computer_name = $computer_name->toArray();
 
 
 
@@ -94,7 +103,12 @@ class PaperCountersController extends Controller
                 {
                     $timestamp = $values[3] . ' ' . $values[4];
 
-                    $printer = $values[6] . ' ' . $values[7];
+                    if(!empty($values[7]))
+                    {
+                        $printer = $values[6] . ' ' . $values[7];
+                    }else{
+                        $printer = $values[6];
+                    }
 
                     $k = 7;
                     while (isset($values[$k]))
@@ -110,8 +124,10 @@ class PaperCountersController extends Controller
                     if (gettype($timestamp) != 'boolean')
                     {
 //                        если в базе таких значений нет формируем массив для записи в бд
-                        $search_result = array_search($timestamp, $date_dispatch);
-                        if (!$search_result)
+                        $search_result_time = array_search($timestamp, $date_dispatch);
+                        $search_result_comp = array_search($values[5], $computer_name);
+
+                        if (!$search_result_time || !$search_result_comp)
                         {
                             $data[$i] = [
                                 'user_name' => $values[0],
@@ -119,15 +135,14 @@ class PaperCountersController extends Controller
                                 'copies' => $values[2],
                                 'date_dispatch' => $timestamp,
                                 'computer_name' => $values[5],
-                                'printer_name' => $printer
+                                'printer_name' => $printer,
+                                'printserver_id' => $request->printserver
 
                             ];
                         }else{
                             dd('Эти данные уже есть в базе');
                         }
-
                     }
-
                 }
            }
 

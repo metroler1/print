@@ -12,6 +12,14 @@
 
         <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('/manager/papers/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <label for="printserver" class="col-sm-3 control-label">Производитель</label>
+                <div class="col-sm-6">
+                    {!! Form::select('printserver', $printserver, null, ['class' => 'form-control master']) !!}
+                </div>
+            </div>
+
             <input type="file" name="import_file" />
             <br/>
             <button class="btn btn-primary">Import File</button>

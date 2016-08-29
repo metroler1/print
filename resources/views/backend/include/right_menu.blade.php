@@ -7,10 +7,12 @@
                 <a href="/manager/master" class="list-group-item">Мастера</a>
                 <a href="/manager/place/add" class="list-group-item">Местоположение</a>
                 <a href="/manager/office" class="list-group-item">Офиса</a>
+                <a href="/manager/printserver" class="list-group-item">Принт сервера</a>
             </div>
 
             <div class="list-group">
                 <a href="/manager/papers" class="list-group-item">Бумага</a>
+                <a href="/manager/users" class="list-group-item">Управления пользователями</a>
             </div>
         </div>
 

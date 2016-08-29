@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Printer;
 use Illuminate\Http\Request;
-use App\Models\Type;
-use App\Models\Backend\Manifacture;
 use App\Models\Place;
-use App\Models\Master;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Helpers\PoolObj;
 
 class PrinterController extends Controller
 {
@@ -29,16 +28,57 @@ class PrinterController extends Controller
 
     public function create()
     {
-        $printer = Type::all();
-        $manifactures = Manifacture::all();
+
         $places = Place::all();
-        $masters = Master::all();
-        return view('backend.printer.add', ['printer' => $printer,
+
+        $masters = PoolObj::getSome('masterObj')->lists('master_name', 'id');
+
+        $office_name = PoolObj::getSome('officeObj')->lists('office_name', 'office_name');
+
+        $type = PoolObj::getSome('typeObj')->lists('type', 'id');
+
+
+        $manifactures = PoolObj::getSome('manifactureObj')->lists('manifacture', 'id');
+
+
+        return view('backend.printer.add', ['type' => $type,
             'manifactures' => $manifactures,
             'places' => $places,
-            'masters' => $masters
+            'masters' => $masters,
+            'office_name' => $office_name
         ]);
+        
     }
 
+    public function edit($id)
+    {
+        $printeres = Printer::findOrFail($id);
+        
+        
+
+        $printer = Db::table('printers')->select('room')->lists('room', 'room');
+        $person = Db::table('printers')->select('person')->lists('person', 'person');
+
+
+
+        $manifactures = PoolObj::getSome('manifactureObj')->lists('manifacture', 'id');
+        $type = PoolObj::getSome('typeObj')->lists('type', 'id');
+        $office_name = PoolObj::getSome('officeObj')->lists('office_name', 'id');
+        $masters = PoolObj::getSome('masterObj')->lists('master_name', 'id');
+
+
+
+
+        return view('backend.printer.edit', compact('printeres', 'manifactures', 'type', 'office_name', 'masters', 'place', 'printer', 'person'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $printeres = Printer::findOrFail($id);
+
+        $printeres->update($request->all());
+
+        return redirect('printer/show');
+    }
 
 }

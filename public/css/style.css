@@ -19,6 +19,7 @@ td.title{
 }
 
 
+
 .modalDialog:target {
 	display: block;
 	pointer-events: auto;

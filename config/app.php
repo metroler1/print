@@ -164,6 +164,13 @@ return [
 
 //		Помогает на уровне загрузок
 		Codesleeve\LaravelStapler\Providers\L5ServiceProvider::class,
+
+//        права доступа
+        Zizaco\Entrust\EntrustServiceProvider::class,
+
+//        my own service provider
+        App\Providers\HelperServiceProvider::class,
+
     ],
 
     /*
@@ -212,6 +219,11 @@ return [
 		'Form'		=> Illuminate\Html\FormFacade::class,
 
 		'Excel' 	=> Maatwebsite\Excel\Facades\Excel::class,
+
+        'PoolObj'   => App\Helpers\PoolObj::class,
+
+//      права доступа
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];

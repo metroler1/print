@@ -10,4 +10,9 @@ class Type extends Model
 
 	protected $fillable=['type'];
 
+    public function scopeGetType($query)
+    {
+        $query->select('type');
+    }
+
 }

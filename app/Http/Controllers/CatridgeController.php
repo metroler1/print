@@ -42,41 +42,9 @@ class CatridgeController extends Controller
 		$storageLocationCatridges = StorageLocationCatridges::all();
 
 		return view('frontend.catridge.show', compact('catridges', 'storageLocationCatridges'));
-
-
 	}
 
-	public function edit($id)
-	{
-		$catridges = Catridge::findOrFail($id);
 
-		return view('frontend.cartridge.edit', compact('catridges'));
-	}
-
-	public function update($id, CatridgesRequest $request)
-	{
-		$catridges = Catridge::findOrFail($id);
-
-		$catridges->update($request->all());
-
-		return redirect('cartridge/show');
-
-	}
-
-//	public function store(CatridgesRequest $request)
-//	{
-//		$catridge = new Catridge;
-//		$catridge->current_id = $request->current_id;
-//		$catridge->manifacture = $request->manifacture;
-//		$catridge->model = $request->model;
-//		$catridge->type = $request->type;
-//		$catridge->location = $request->location;
-//		$catridge->master = $request->master;
-//		$catridge->auxiliary = $request->auxiliary;
-//		$catridge->save();
-//
-//		return redirect('/manager/addcatridge');
-//	}
 
 	public function getCatridgesFromMaster(CatridgesRequest $request)
 	{

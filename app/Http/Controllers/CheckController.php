@@ -8,7 +8,6 @@ use App\Http\Requests;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CheckRequest as CheckRequest;
-use Psy\Util\Json;
 
 class CheckController extends Controller
 {
@@ -18,13 +17,15 @@ class CheckController extends Controller
 		$checkCreate = Check::billListsMaksim()->get();
 		$checkCreateSecondMaster = Check::billListsVladimir()->get();
 
-		
 		return view('frontend.check.index', compact('checkCreate', 'checkCreateSecondMaster'));
+        
 	}
 
 	public function add()
 	{
-        $masters = DB::table('master')->select('master_name')->lists('master_name', 'master_name');
+        $masters = DB::table('master')->select('master_name')->lists('master_name', 'id');
+
+
         $office_name = Db::table('office')->select('office_name')->lists('office_name', 'office_name');
 
 		return view('frontend.check.add', compact('office_name', 'masters'));
@@ -38,7 +39,10 @@ class CheckController extends Controller
 			$checks = Check::find($influence);
 			$checkData = Check::showCheckId($influence)->get();
 
-			return view('frontend.check.show', compact('checks', 'checkData'));
+//           подсчет суммы
+            $total = number_format($checkData->sum('price'), 2);
+
+			return view('frontend.check.show', compact('checks', 'checkData', 'total'));
 		}
 		
 	}
@@ -56,6 +60,7 @@ class CheckController extends Controller
 		$check->catridge_model = $request->catridge_model;
 		$check->catridge_current_id = $request->catridge_current_id;
 		$check->price = $request->price;
+        $check->manifacture = $request->manifact;
 		$check->master = $request->master;
         $check->office = $request->office;
 		$check->influence = strtotime($request->influence);
