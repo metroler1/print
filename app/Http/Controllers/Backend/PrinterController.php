@@ -14,7 +14,10 @@ class PrinterController extends Controller
 {
     public function index()
     {
-        $printer = Printer::all();
+        $print = new Printer();
+
+        $printer = $print->getPrinterList();
+
 
         return view('backend.printer.index', compact('printer'));
     }
@@ -35,6 +38,8 @@ class PrinterController extends Controller
 
         $office_name = PoolObj::getSome('officeObj')->lists('office_name', 'office_name');
 
+        $printModel = PoolObj::getSome('$printModelObj')->lists('model', 'id');
+
         $type = PoolObj::getSome('typeObj')->lists('type', 'id');
 
 
@@ -45,7 +50,8 @@ class PrinterController extends Controller
             'manifactures' => $manifactures,
             'places' => $places,
             'masters' => $masters,
-            'office_name' => $office_name
+            'office_name' => $office_name,
+            'printModel' => $printModel
         ]);
         
     }
@@ -57,7 +63,7 @@ class PrinterController extends Controller
         
 
         $printer = Db::table('printers')->select('room')->lists('room', 'room');
-        $person = Db::table('printers')->select('person')->lists('person', 'person');
+//        $person = Db::table('printers')->select('person')->lists('person', 'person');
 
 
 
@@ -66,10 +72,12 @@ class PrinterController extends Controller
         $office_name = PoolObj::getSome('officeObj')->lists('office_name', 'id');
         $masters = PoolObj::getSome('masterObj')->lists('master_name', 'id');
 
+        $printModel = PoolObj::getSome('$printModelObj')->lists('model', 'id');
 
 
 
-        return view('backend.printer.edit', compact('printeres', 'manifactures', 'type', 'office_name', 'masters', 'place', 'printer', 'person'));
+
+        return view('backend.printer.edit', compact('printeres', 'manifactures', 'type', 'office_name', 'masters', 'place', 'printer', 'person', 'printModel'));
     }
 
     public function update($id, Request $request)

@@ -3,10 +3,9 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                <tr>
+
                     <td class="title">#</td>
                     <td class="">имя пользователя</td>
                     <td class="">кол-во страниц</td>
@@ -14,22 +13,24 @@
                     <td class="">дата печати</td>
                     <td class="">имя компьютера</td>
                     <td class="">имя принтера</td>
+                    <td class="">принт сервер</td>
                 </tr>
-                <thead>
-                <tbody>
+
                 @foreach($data as $key => $record)
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td>{{ $record->user_name }}</td>
                         <td>{{ $record->pages }}</td>
                         <td>{{ $record->copies }}</td>
-                        <td>{{ $record->date_dispatch }}</td>
+                        <td>{{ date('d-m-Y' ,$record->date_dispatch) }}</td>
                         <td>{{ $record->computer_name }}</td>
                         <td>{{ $record->printer_name }}</td>
+                        <td>{{ $record->print_server }}</td>
                     </tr>
                 @endforeach
-                </tbody>
+
             </table>
+            <?php echo $data->render(); ?>
         </div>
         <div class="col-md-1">
             <!-- Single button -->
@@ -54,6 +55,6 @@
     <script>
         $(document).ready( function () {
             $('#table_id').DataTable();
-        } );
+        });
     </script>
 @endsection

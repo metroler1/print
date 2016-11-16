@@ -3,32 +3,66 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Integer;
 
 class Check extends Model
 {
 
-	protected $table = 'check';
+    protected $table = 'check';
 
-	protected $fillable = ['catridge_name', 'price', 'manifacture', 'type_of_repair', 'master', 'influence'];
+    protected $fillable = ['catridge_name', 'price', 'manifacture', 'type_of_repair', 'master', 'influence'];
 
-    public function scopeBillListsMaksim($query)
+//    public function scopeBillListsMaksim($query)
+//    {
+//        $query->where('master_id', '1')
+//            ->groupBy('influence')
+//            ->having('influence', '>', '0');
+//    }
+
+    public function bill($master)
     {
-        $query->where('master_id', '1')
-            ->groupBy('influence')
-            ->having('influence', '>', '0');
+        return DB::select("SELECT c.influence, c.master_id as master
+                           FROM `check` as c
+                           WHERE c.master_id = $master
+                           GROUP BY c.influence
+                           HAVING c.influence > 0
+                           ");
     }
 
-    public function scopeBillListsVladimir($query)
+//    public function scopeBillListsVladimir($query)
+//    {
+//        $query->where('master_id', '2')
+//            ->groupBy('influence')
+//            ->having('influence', '>', '0');
+//    }
+
+    public function getDetailBill($influence, $master)
     {
-        $query->where('master_id', '2')
-            ->groupBy('influence')
-            ->having('influence', '>', '0');
+
+        return DB::select("SELECT c.catridge_current_id, c.price, c.catridge_model, c.influence, manifacture.manifacture, 
+                                  type_of_service_on_cartridges.name as type_of_repair,
+                                  master.master_name, office.office_name
+                           FROM `check` as c                           
+                           INNER JOIN manifacture on c.manifacture_id = manifacture.id
+                           INNER JOIN type_of_service_on_cartridges on c.type_of_repair_id = type_of_service_on_cartridges.id
+                           INNER JOIN master on c.master_id = master.id                            
+                           INNER JOIN office on c.office_id = office.id                                               
+                           WHERE c.influence = $influence AND master.id = $master
+        ");
+
     }
 
-    public function scopeShowCheckId($query, $influence)
+    public function sum(array $arr)
     {
-        $query->where('influence', $influence);
+        foreach ($arr as $key =>  $el)
+        {
+            $sum[] = $el->price;
+        }
+
+        return array_sum($sum);
     }
+
 
     public function manifacture()
     {
@@ -44,5 +78,6 @@ class Check extends Model
     {
         return $this->belongsTo('App\Models\Master');
     }
+
 
 }

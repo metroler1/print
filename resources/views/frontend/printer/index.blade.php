@@ -40,12 +40,11 @@
                    {{ ++$key }}
                 </td>
                 <td><a href="{{ action('PrinterController@show', [$printers->id]) }}">{{ $printers->current_id }}</a></td>
-                <td>{{ $printers->manifacture->manifacture . ' ' . $printers->model}}</td>
-
-                <td>{{ $printers->type->type }}</td>
-                <td>{{ $printers->place }}/{{$printers->room}}/{{$printers->person}}</td>
+                <td>{{ $printers->manifacture . ' (' . $printers->model .')'}}</td>
+                <td>{{ $printers->type }}</td>
+                <td>{{ $printers->place }}//{{$printers->person}}</td>
                 <td>{{ $printers->ip }}</td>
-                <td>{{ $printers->master->master }}</td>
+                <td>{{ $printers->master_name }}</td>
                 <td>{{ $printers->auxiliary }}</td>
             </tr>
         @endforeach

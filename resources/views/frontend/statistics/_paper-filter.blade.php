@@ -14,10 +14,27 @@
             </div>
 
             {!! Form::label('Период') !!}
-            <div class="form-group">
-                {!! Form::text('datepickerfrom', date('Y-m-d'), ['class' => 'datepickerfrom from-control']) !!}
-                {!! Form::text('datepickerto', date('Y-m-d'), ['class' => 'datepickerto from-control']) !!}
+            {{--<div class="form-group">--}}
+                {{--{!! Form::text('datepickerfrom', date('Y-m-d'), ['class' => 'datepickerfrom from-control']) !!}--}}
+                {{--{!! Form::text('datepickerto', date('Y-m-d'), ['class' => 'datepickerto from-control']) !!}--}}
+            {{--</div>--}}
+            <div class="input-group date" data-provide="datepicker">
+                {!! Form::text('influence', null, ['class' => 'form-control influence', 'placeholder' => 'Дата счета']) !!}
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
             </div>
+            <br>
+            <div class="input-group date" data-provide="datepicker">
+                {!! Form::text('influence', null, ['class' => 'form-control influence', 'placeholder' => 'Дата счета']) !!}
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
 
 
             <div class="form-group">
@@ -39,14 +56,14 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($paper_counters as $key => $paper_counter)
-                <tr>
-                    <td>{{ $key }}</td>
-                    <td>{{ $paper_counter->device_name }}</td>
-                    <td class="counts">{{ $paper_counter->number_of }}</td>
-                    <td class="date">{{ date('Y-m-d', $paper_counter->influence) }}</td>
-                </tr>
-            @endforeach
+            {{--@foreach($paper_counters as $key => $paper_counter)--}}
+                {{--<tr>--}}
+                    {{--<td>{{ $key }}</td>--}}
+                    {{--<td>{{ $paper_counter->device_name }}</td>--}}
+                    {{--<td class="counts">{{ $paper_counter->number_of }}</td>--}}
+                    {{--<td class="date">{{ date('Y-m-d', $paper_counter->influence) }}</td>--}}
+                {{--</tr>--}}
+            {{--@endforeach--}}
             </tbody>
         </table>
     </div>

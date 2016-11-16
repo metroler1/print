@@ -45,6 +45,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('show/{id}', 'PrinterController@show');
 		Route::get('show/{id}/edit', 'PrinterController@edit');
 		Route::patch('show/{id}', 'PrinterController@update');
+        Route::resource('models', 'Backend\PrinterModelController');
 
 	});
 
@@ -59,7 +60,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 		Route::get('check', 'CheckController@index');
-		Route::get('check/show/{id}', 'CheckController@show');
+		Route::get('check/show/{id}/{master}', 'CheckController@show');
 		Route::get('check/add', 'CheckController@add');
 		Route::post('check/add', 'CheckController@store');
 		Route::patch('check/add', 'CheckController@giveData');
@@ -68,8 +69,13 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(array('prefix' => 'statistics'), function()
     {
-        Route::get('/', 'StatisticsController@index');
-        Route::post('/', 'StatisticsController@index');
+//        Route::get('/', 'StatisticsController@index');
+//        Route::post('/', 'StatisticsController@index');
+
+        Route::post('price', 'StatisticsController@store');
+        Route::get('price', 'StatisticsController@priceIndex');
+        Route::get('price/api', 'StatisticsController@api');
+        Route::get('paper', 'StatisticsController@paperIndex');
     });
 
     Route::group(array('prefix' => 'wifi'), function()
@@ -97,6 +103,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('/', 'Backend\PrinterController');
             Route::get('{id}/edit', 'Backend\PrinterController@edit');
             Route::patch('show/{id}', 'Backend\PrinterController@update');
+            Route::resource('models', 'Backend\PrinterModelController');
         });
 //        Route::resource('printer', 'Backend\PrinterController');
 
@@ -106,6 +113,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('{id}/edit', 'Backend\CartridgeController@edit');
             Route::patch('show/{id}', 'Backend\CartridgeController@update');
             Route::resource('service', 'Backend\TypeOfServiceOnCartridgeController');
+            Route::resource('models', 'Backend\CartridgeModelController');
         });
 
 
@@ -119,8 +127,13 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::group(array('prefix' => 'office'), function () {
             Route::resource('/', 'Backend\OfficeController');
-            Route::get('/{id}', 'Backend\OfficeController@show');
+//            Route::get('/{id}', 'Backend\OfficeController@show');
+            Route::get('/{id}/rooms', 'Backend\RoomController@index');
+            Route::get('/{id}/rooms/{room_id}', 'Backend\RoomController@show');
+            Route::get('/{id}/rooms/{room_id}/edit', 'Backend\RoomController@edit');
+            Route::post('/{id}/rooms', 'Backend\RoomController@store');
             Route::get('/{id}/edit', 'Backend\OfficeController@edit');
+            Route::patch('/{id}/update', 'Backend\OfficeController@update');
         });
 
 
@@ -141,6 +154,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::group(array('prefix' => 'printserver'), function() {
             Route::get('/', 'Backend\PrintServerController@index');
             Route::post('/', 'Backend\PrintServerController@store');
+        });
+
+        Route::get('systeminfo', function(){
+           dd(phpinfo());
         });
 
 

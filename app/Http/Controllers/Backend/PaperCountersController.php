@@ -12,13 +12,19 @@ use App\Models\Printer;
 use DB;
 use Excel;
 use App\Http\Requests\Backend\PaperCountersRequest as PaperCountersRequest;
+use Illuminate\Pagination\PaginationServiceProvider;
 
 
 class PaperCountersController extends Controller
 {
     public function index()
     {
-        $data = PaperCounter::getFullData()->get();
+//        $data = PaperCounter::getFullData()->get();
+        $paperCount = new PaperCounter();
+
+//        $data = $paperCount->getWholeData();
+        $data = $paperCount->dta()->paginate(20);
+
         return view('backend.paper.index', compact('data'));
     }
 
@@ -26,8 +32,6 @@ class PaperCountersController extends Controller
     public function create()
     {
         $printeres = Printer::printerWithIp()->get();
-
-
 
         return view('backend.paper.add', compact('printeres'));
     }
@@ -55,7 +59,9 @@ class PaperCountersController extends Controller
 
     public function importExport()
     {
-        $printserver = DB::table('print_serveres')->select('name')->lists('name');
+        $printserver = DB::table('print_serveres')->select('name', 'id')->lists('name', 'id');
+
+
 
         return view('backend.paper.xml', compact('printserver'));
     }
@@ -103,9 +109,10 @@ class PaperCountersController extends Controller
                 {
                     $timestamp = $values[3] . ' ' . $values[4];
 
-                    if(!empty($values[7]))
+                    if(!empty($values[7]) && !empty($values[6]))
                     {
                         $printer = $values[6] . ' ' . $values[7];
+//                        var_dump($printer);
                     }else{
                         $printer = $values[6];
                     }
@@ -114,7 +121,7 @@ class PaperCountersController extends Controller
                     while (isset($values[$k]))
                     {
                         $printer = $printer . ' ' . $values[$k];
-
+                        echo $values[$k];
                         $k++;
                     }
 
@@ -147,6 +154,8 @@ class PaperCountersController extends Controller
            }
 
            if(!empty($data)){
+
+//               dd($data);
                DB::table('paper_counters')->insert($data);
                return redirect('/manager/papers');
            }

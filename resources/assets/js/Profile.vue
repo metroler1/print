@@ -1,4 +1,4 @@
-<template>
+л<template>
   <div class="profile">
     {{ name }}
   </div>

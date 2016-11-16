@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link href="css/jqueryui/jquery-ui.css" rel="stylesheet">
     <link href="css/icheck/icheck.css" rel="stylesheet">
 @endsection
 
@@ -18,17 +17,13 @@
                 <div class="tab-content">
 
                     <div id="price" class="tab-pane fade in active">
-                        @include('frontend.statistics._cost_filter')
+                        {{--@include('frontend.statistics._cost_filter')--}}
                     </div>
 
                     <div id="paper" class="tab-pane fade">
                         @include('frontend.statistics._paper-filter')
                     </div>
                 </div>
-
-
-
-
         </div>
     </div>
 
@@ -37,34 +32,8 @@
 
 @section('scripts')
     <script src="../js/pluginstable.js"></script>
-    <script src="../js/jqueryui/jquery-ui.js"></script>
     <script src="../js/icheck/icheck.js"></script>
     <script>
-
-        {{--settings for jquery ui calendar--}}
-        $(function() {
-            $( ".datepickerfrom" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showOn: "button",
-                buttonImage: "images/jqueryui/calendar.gif",
-                buttonImageOnly: true,
-                buttonText: "Select date"
-            });
-            $( ".datepickerto" ).datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showOn: "button",
-                buttonImage: "images/jqueryui/calendar.gif",
-                buttonImageOnly: true,
-                buttonText: "Select date"
-            });
-
-
-        });
-
-        //settings for datatables
-
         $(document).ready( function () {
             $('#cost_statistiks').DataTable();
         });
@@ -81,6 +50,5 @@
                 increaseArea: '20%' // optional
             });
         });
-
     </script>
 @endsection

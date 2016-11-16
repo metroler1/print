@@ -6,11 +6,16 @@
                 <tr>
                     <td>#</td>
                     <td>Мастер</td>
+                    <td>Действия</td>
                 </tr>
                 @foreach($offices as $key => $office)
                     <tr>
                         <td>{{ ++$key }}</td>
-                        <td><a href="{{ action('Backend\OfficeController@show', [$office->id]) }}">{{ $office->office_name }}</a></td>
+                        <td><a href="{{ action('Backend\OfficeController@show', [$office->id] ) . '/rooms' }}">{{ $office->office_name }}</a></td>
+                        <td>
+                            <a href="office/{{$office->id}}/edit" type="button"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="" type="button"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                        </td>
                     </tr>
                 @endforeach
             </table>

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Office;
+use App\Models\Backend\OfficeImage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+
 
 class OfficeController extends Controller
 {
@@ -19,7 +23,34 @@ class OfficeController extends Controller
     {
         $office = Office::findOrFail($id);
 
-        return view('backend.office.edit', compact('office'));
+        $officeImgObj = new OfficeImage();
+
+        $officeImg = $officeImgObj->getImageList($id);
+
+        return view('backend.office.edit', compact('office', 'officeImg'));
+    }
+
+    public function update($id, Request $request)
+    {
+
+        if(Input::hasFile('fileMulti')) {
+            //upload an image to the /img/tmp directory and return the filepath.
+            $files = Input::file('fileMulti');
+           foreach ($files as $key => $file)
+           {
+               $tmpFilePath = '/img/user_image/' . \Auth::user()->name;
+               $tmpFileName = time() . '-' . $file->getClientOriginalName();
+//               $filenameFileLocal = iconv("UTF-8","WINDOWS-1251",$tmpFileName);
+               $file = $file->move(public_path() . $tmpFilePath, $tmpFileName);
+               $path = $tmpFilePath . '/' . $tmpFileName;
+               $data[] = ['path' =>$path, 'office_id' => $id];
+           }
+
+                DB::table('office_images')->insert($data);
+                return redirect('/');
+            } else {
+                echo 'Файлы отсутствуют';
+            }
     }
 
     public function show($id)
@@ -35,24 +66,6 @@ class OfficeController extends Controller
         return view('backend.office.add');
     }
 
-//    public function store(Request $request)
-//    {
-////        $file = $request->file('image_path');
-////        $filename = $file->getClientOriginalName();
-//        $office = new Office;
-////        $filename = 'fsdfsfsf';
-////        $request['image_path'] = $filename;
-//        $imageFile = $request->image_path;
-////        $filename = $imageFile->getClientOriginalName();
-//        $request->file('image_path')->move(public_path('thumb'), $request->file('image_path')->getClientOriginalName());
-//        $data = $request->except(['image_path']);
-//        $data['image_path'] = '/thumb/' . $request->file('image_path')->getClientOriginalName();
-//        $office->image_path = $data['image_path'];
-//        $office->save();
-//    //        Office::create($request->all());
-//
-//        return redirect('/manager/office');
-//    }
 
     public function store(Request $request)
     {

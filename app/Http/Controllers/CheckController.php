@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Backend\CartidgeModel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CheckRequest as CheckRequest;
+use App\Helpers\PoolObj;
 
 class CheckController extends Controller
 {
 
     public function index()
 	{
-		$checkCreate = Check::billListsMaksim()->get();
-		$checkCreateSecondMaster = Check::billListsVladimir()->get();
+
+        $check = new Check();
+
+//		$checkCreate = Check::billListsMaksim()->get();
+
+        $checkCreate =  $check->bill(1);
+        $checkCreateSecondMaster = $check->bill(2);
 
 		return view('frontend.check.index', compact('checkCreate', 'checkCreateSecondMaster'));
         
@@ -23,26 +30,32 @@ class CheckController extends Controller
 
 	public function add()
 	{
-        $masters = DB::table('master')->select('master_name')->lists('master_name', 'id');
+        $masters = PoolObj::getSome('masterObj')->lists('master_name', 'id');
 
 
-        $office_name = Db::table('office')->select('office_name')->lists('office_name', 'office_name');
+//        $office_name = Db::table('office')->select('office_name')->lists('office_name', 'office_name');
 
-		return view('frontend.check.add', compact('office_name', 'masters'));
+		return view('frontend.check.add', compact('masters'));
 
 	}
 
-	public function show($influence)
+
+	public function show($influence, $master)
 	{
-		if (isset($influence)) 
+        $sessiya = \Session::get('_token');
+
+        $check  = new Check();
+
+
+		if (isset($influence) && isset($master))
 		{
-			$checks = Check::find($influence);
-			$checkData = Check::showCheckId($influence)->get();
+
+            $checkData = $check->getDetailBill($influence, $master);
 
 //           подсчет суммы
-            $total = number_format($checkData->sum('price'), 2);
+            $total = number_format($check->sum($checkData), 2);
 
-			return view('frontend.check.show', compact('checks', 'checkData', 'total'));
+            return view('frontend.check.show', compact('checkData', 'total'));
 		}
 		
 	}
@@ -60,33 +73,35 @@ class CheckController extends Controller
 		$check->catridge_model = $request->catridge_model;
 		$check->catridge_current_id = $request->catridge_current_id;
 		$check->price = $request->price;
-        $check->manifacture = $request->manifact;
-		$check->master = $request->master;
-        $check->office = $request->office;
+        $check->manifacture_id = $request->manifact;
+		$check->master_id = $request->master;
+        $check->office_id = $request->office;
 		$check->influence = strtotime($request->influence);
-		$check->type_of_repair = $request->type_of_repair;
-		
+		$check->type_of_repair_id = $request->type_of_repair;
+
 		$check->save();
 
-        return response()->json(['response' => "answer"]);
+        return response()->json(['response' => strtotime($request->influence) . 'R' . \Session::get('_token')]);
 
 	}
 
 	public function giveData()
 	{
         //отдаем список офисов в js для рендинга
-        $office_name = Db::table('office')->select('office_name')->lists('office_name');
+        $office_name = Db::table('office')->select('office_name', 'id')->lists('office_name', 'id');
 
-        $cartridge_service = DB::table('type_of_service_on_cartridges')->select('name')->lists('name');
+        $cartridge_service = DB::table('type_of_service_on_cartridges')->select('name', 'id')->lists('name', 'id');
 
-        $cartridge_model = DB::table('catridges')->select('model')->distinct()->lists('model');
 
-        $manifacture = DB::table('manifacture')->select('manifacture')->lists('manifacture');
+        $carModelObj = new CartidgeModel();
+
+        $cartridge_model = DB::table('cartridge_models')->select('model')->lists('model');
+
+        $manifacture = DB::table('manifacture')->select('manifacture', 'id')->lists('manifacture', 'id');
 
 
         $data = [$office_name, $cartridge_service, $cartridge_model, $manifacture];
         
-
         return response()->json($data);
 	}
     

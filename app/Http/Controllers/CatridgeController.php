@@ -18,20 +18,28 @@ class CatridgeController extends Controller
 	public function index(CatridgesRequest $request)
 	{
 
-        $sort = $request->sort;
-//        $flag = $request->flag;
-        $sortType = $request->sortType;
-        if (isset($sort) && isset($sortType))
-        {
-         $catridges = Catridge::orderBy($sortType, $sort)->get();
+        $car = new Catridge();
 
-//            return view('frontend.cartridge.index', ['catridges' => $catridges]);
-        }else{
-            $catridges = Catridge::orderBy('current_id', 'desc')->get();
+        $catridges = $car->getCartridge();
+//
+//
+//
+//        $sort = $request->sort;
+////        $flag = $request->flag;
+//        $sortType = $request->sortType;
+//        if (isset($sort) && isset($sortType))
+//        {
+//         $catridges = Catridge::orderBy($sortType, $sort)->get();
+//
+////            return view('frontend.cartridge.index', ['catridges' => $catridges]);
+//        }else{
+//            $catridges = Catridge::orderBy('current_id', 'desc')->get();
+//
+//
+//        }
+//        return view('frontend.catridge.index', ['catridges' => $catridges]);
 
-
-        }
-        return view('frontend.catridge.index', ['catridges' => $catridges]);
+        return view('frontend.catridge.index', compact('catridges'));
 	}
 
 	public function show($id)

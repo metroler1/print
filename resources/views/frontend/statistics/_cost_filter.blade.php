@@ -59,9 +59,15 @@
 
 
         {!! Form::label('Период') !!}
-        <div class="form-group">
-            {!! Form::text('datepickerfrom', date('Y-m-d'), ['class' => 'datepickerfrom from-control']) !!}
-            {!! Form::text('datepickerto', date('Y-m-d'), ['class' => 'datepickerto from-control']) !!}
+        {{--<div class="form-group">--}}
+            {{--{!! Form::text('datepickerfrom', date('Y-m-d'), ['class' => 'datepickerfrom from-control']) !!}--}}
+            {{--{!! Form::text('datepickerto', date('Y-m-d'), ['class' => 'datepickerto from-control']) !!}--}}
+        {{--</div>--}}
+        <div class="input-group date" data-provide="datepicker">
+            {!! Form::text('influence', null, ['class' => 'form-control influence', 'placeholder' => 'Дата счета']) !!}
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
         </div>
 
 

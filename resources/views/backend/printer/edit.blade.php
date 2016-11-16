@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label for="model" class="col-sm-3 control-label">Модель</label>
                 <div class="col-sm-6">
-                    {!! Form::text('model', null, ['class' => 'form-control', 'id' => 'model', 'required']) !!}
+                    {!! Form::select('model', $printModel, null, ['class' => 'form-control master']) !!}
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
             <div class="form-group">
                 <label for="person" class="col-sm-3 control-label">Сотрудник</label>
                 <div class="col-sm-6">
-                    {!! Form::select('person', $person, null, ['class' => 'form-control master']) !!}
+                    {{--{!! Form::select('person', $person, null, ['class' => 'form-control master']) !!}--}}
                 </div>
             </div>
 

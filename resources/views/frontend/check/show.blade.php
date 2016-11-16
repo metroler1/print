@@ -9,7 +9,7 @@
                 <td>Инв. номер</td>
                 <td>Цена</td>
                 <td>Модель</td>
-                {{--<td>Служба</td>--}}
+                <td>Служба</td>
                 <td>Офис</td>
             </tr>
             @foreach($checkData as $key => $oneData)
@@ -17,9 +17,9 @@
                     <td>{{ ++$key }}</td>
                     <td>{{ $oneData->catridge_current_id }}</td>
                     <td>{{ $oneData->price }}</td>
-                    <td>{{ $oneData->manifacture->manifacture . ' ' . $oneData->catridge_model }} </td>
-                    {{--<td>{{ $oneData->type_of_repair }}</td>--}}
-                    <td>{{ $oneData->office->office_name }}</td>
+                    <td>{{ $oneData->manifacture. ' ' . $oneData->catridge_model }} </td>
+                    <td>{{ $oneData->type_of_repair }}</td>
+                    <td>{{ $oneData->office_name }}</td>
                 </tr>
             @endforeach
                 <tr class="lead">

@@ -150,6 +150,8 @@ return [
 
 		Illuminate\Html\HtmlServiceProvider::class,
 
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -224,6 +226,8 @@ return [
 
 //      права доступа
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

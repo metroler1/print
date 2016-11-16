@@ -18,17 +18,12 @@ class PrinterController extends Controller
 {
 	public function index(StorePrintersPostRequest $request)
 	{
-        $sort = $request->sort;
-        $sortType = $request->sortType;
+        $print = new Printer();
 
-        if (isset($sort) && isset($sortType))
-        {
-            $printer = Printer::orderBy($sortType, $sort)->get();
-        }else{
-            $printer = Printer::orderBy('current_id', 'asc')->get();
-        }
+        $printer = $print->getPrinterList();
+        
 
-		return view('frontend.printer.index', ['printer' => $printer]);
+		return view('frontend.printer.index', compact('printer'));
 	}
 
 	public function show($id)
@@ -38,4 +33,5 @@ class PrinterController extends Controller
 		return view('frontend.printer.show', compact('printeres'));
 
 	}
+
 }

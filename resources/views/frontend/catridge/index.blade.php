@@ -65,11 +65,10 @@
                     {{ ++$key }}
                 </td>
                 <td><a href="{{ action('CatridgeController@show', [$catridge->id]) }}">{{ $catridge->current_id }}</a></td>
-                <td>{{ $catridge->manifacture->manifacture }} ({{  $catridge->model }})</td>
-                <td>{{ $catridge->type->type }}</td>
+                <td>{{ $catridge->manifacture }} ({{  $catridge->model }})</td>
+                <td>{{ $catridge->type }}</td>
                 <td>{{ $catridge->location }}</td>
-                {{--<td>{{ $catridge->catridge_has }}</td>--}}
-                <td>{{ $catridge->master->master_name }}</td>
+                <td>{{ $catridge->master_name }}</td>
                 <td>{{ $catridge->auxiliary }}</td>
             </tr>
         @endforeach

@@ -26,7 +26,8 @@
             <div class="form-group">
                 <label for="model" class="col-sm-3 control-label">Модель</label>
                 <div class="col-sm-6">
-                    {!! Form::text('model', null, ['class' => 'form-control', 'id' => 'model', 'required']) !!}
+                    {{--{!! Form::text('model', null, ['class' => 'form-control', 'id' => 'model', 'required']) !!}--}}
+                    {!! Form::select('model', $cartModel, null, ['class' => 'form-control']) !!}
                 </div>
             </div>
 

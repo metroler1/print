@@ -15,9 +15,9 @@ class CartridgeController extends Controller
 {
     public function index()
     {
-        $catridges = Catridge::all();
+        $car = new Catridge();
 
-//        $master = Catridge::find(1)->master;
+        $catridges = $car->getCartridge();
 
         return view('backend.cartridge.index', compact('catridges'));
     }
@@ -30,7 +30,9 @@ class CartridgeController extends Controller
 
         $office_name = DB::table('office')->select('office_name')->lists('office_name', 'office_name');
 
-        return view('backend.cartridge.add', compact('manifactures', 'type', 'masters', 'office_name'));
+        $cartModel = PoolObj::getSome('$cartModelObj')->lists('model', 'id');
+
+        return view('backend.cartridge.add', compact('manifactures', 'type', 'masters', 'office_name', 'cartModel'));
     }
 
     public function edit($id)
@@ -42,6 +44,7 @@ class CartridgeController extends Controller
 
         $type = PoolObj::getSome('typeObj')->lists('type', 'id');
 
+        $cartModel = PoolObj::getSome('$cartModelObj')->lists('model', 'id');
 
 
         $manifactures = PoolObj::getSome('manifactureObj')->lists('manifacture', 'id');
@@ -50,7 +53,7 @@ class CartridgeController extends Controller
 //        $office_name = DB::table('office')->select('office_name')->lists('office_name', 'office_name');
 
 
-        return view('backend.cartridge.edit', compact('catridges', 'masters', 'type', 'manifactures', 'office_name'));
+        return view('backend.cartridge.edit', compact('catridges', 'masters', 'type', 'manifactures', 'office_name', 'cartModel'));
     }
 
     public function update($id, CatridgesRequest $request)

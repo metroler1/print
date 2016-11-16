@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Displacement;
-
-
+use Illuminate\Support\Facades\DB;
 
 class Catridge extends Model
 {
@@ -40,6 +39,17 @@ class Catridge extends Model
         return $this->belongsTo('App\Models\Backend\Manifacture');
     }
 
+
+    public function getCartridge()
+    {
+        return DB::select("SELECT c.id, c.location, c.current_id, c.auxiliary, manifacture.manifacture, master.master_name, types.type, cartridge_models.model
+                            FROM catridges as c
+                            INNER JOIN manifacture ON c.manifacture_id = manifacture.id
+                            INNER JOIN master ON c.master_id = master.id
+                            INNER JOIN types ON c.types_id = types.id
+                            INNER JOIN cartridge_models ON c.model = cartridge_models.id
+                            ORDER BY c.current_id");
+    }
 
 	public static function boot()
 	{

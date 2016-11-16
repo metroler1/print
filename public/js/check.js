@@ -25,26 +25,34 @@ var app = (function(){
                 var catridge_model = "";
                 var manifacture = "";
 
-                for(var i = 0; i < response[0].length; i++)
+                for (var key in response[0])
                 {
                     //спиоск офисов получаемых из сервера
-                    office_name += '<option value="'+ response[0][i] +'">' + response[0][i] + '</option>';
+                    office_name += '<option value="'+ key +'">' + response[0][key] + '</option>';
                 }
 
-                for(var i = 0; i < response[1].length; i++)
+                for (var key in response[1])
                 {
                     //список действий над картриджами
-                    cartridge_service += '<option value="'+ response[1][i] +'">' + response[1][i] + '</option>';
+                    cartridge_service += '<option value="'+ key +'">' + response[1][key] + '</option>';
                 }
 
-                for(var i = 0; i < response[2].length; i++)
+                for (var key in response[2])
                 {
-                    catridge_model +=  '<li><a href="">' + response[2][i] + '</a></li>';
+                    //список действий над картриджами
+                    catridge_model += '<li><a href="">' + response[2][key] + '</a></li>';
                 }
 
-                for (var i = 0; i < response[3].length; i++)
+                // for(var i = 0; i < response[2].length; i++)
+                // {
+                //     catridge_model +=  '<li><a href="">' + response[2][i] + '</a></li>';
+                //
+                // }
+
+                for (var key in response[3])
                 {
-                    manifacture +=  '<option value="'+ response[3][i] +'">' + response[3][i] + '</option>';
+                    //список производителей
+                    manifacture += '<option value="'+ key +'">' + response[3][key] + '</option>';
                 }
 
                 //рендим форму для заполнения счета
@@ -69,8 +77,6 @@ var app = (function(){
                     '</div>'
                 )).done(function () {
                     console.log(catridge_model);
-
-                    
                 });
                 //для удаление одной формы
                 $('.remove-button:last').click(function (e) {
@@ -83,10 +89,11 @@ var app = (function(){
                 var inputAuto = $('input.catridge_model:last');
                 getUl.click(function (e) {
                     e.preventDefault();
+                    console.log($(this).text());
                     var that = $(this).parent().parent().parent().find('input');
                     console.log(that);
                     var thisModel  = $(this).text();
-                    inputAuto.val(thisModel);
+                    that.val(thisModel);
                 });
 
 
@@ -153,7 +160,7 @@ var app = (function(){
                 var catridge_model = arr_catridge_model[i];
                 var office = arr_office[i];
 
-
+                console.log(office);
                 $.ajax({
                     type: "POST",
                     url: '/cartridge/check/add',
@@ -173,7 +180,7 @@ var app = (function(){
                     },
                     success: function (data) {
                         currentCount++;
-                        console.log(data.response);
+
 
                         if (i === currentCount)
                         {
@@ -181,19 +188,22 @@ var app = (function(){
                             var url = window.location.href;
                             console.log("Ура");
                             window.location.href = url.replace('/add', '');
+
                         }
                     },
                     error: function (msg) {
                         console.log(msg);
                         console.log(manifact);
                     }
-                });
 
+                });
+                location.reload(true);
                 console.log(i);
                 i++;
 
             }
         }
+
     });
 //	add new fields in bills
 
@@ -202,15 +212,15 @@ var app = (function(){
 
         var input = $('input.catridge_model:last').val();
 
-        //проверяем чтобы поле модель не было пустым при добавлении новой
-        if (input.length > 0)
-        {
-            // форма для создания счета
-            getListTypeOfRepair();
-        }else{
-            alert('Поле "Модель картриджа" должно быть заполнено ');
-        }
-
+        // форма для создания счета
+        getListTypeOfRepair();
+        // //проверяем чтобы поле модель не было пустым при добавлении новой
+        // if (input.length > 0)
+        // {
+        //
+        // }else{
+        //     alert('Поле "Модель картриджа" должно быть заполнено ');
+        // }
     });
 
 })();

@@ -52,7 +52,16 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/cartridge/show">Катриджи<span class="sr-only">(current)</span></a></li>
                     <li><a href="/printer/show">Принтера</a></li>
-                    <li><a href="/statistics">Статистика</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Статистика <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/statistics/price" class="href">Цена</a></li>
+                            <li><a href="/statistics/paper" class="href">Бумага</a></li>
+                        </ul>
+                    </li>
+                    {{--<li><a href="/statistics">Статистика</a></li>--}}
                     <li><a href="/wifi">Wifi</a></li>
 
 
@@ -62,9 +71,7 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}"></a></li>
-                </ul>
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -105,11 +112,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="/../js/vue.js"></script>
+    {{--<script src="/../js/vue12.min.js"></script>--}}
+    <script src="/../js/vue-resource.min.js"></script>
     <script src="/../js/function.js"></script>
     <script src="/../js/table.js"></script>
     <script src="/../js/datatables/datatables.min.js"></script>
     <script src="/../js/bootstrap-datepicker.min.js"></script>
-
+    <script>
+        $(".nav a").on("click", function(){
+            $(".nav").find(".active").removeClass("active");
+            $(this).parent().addClass("active");
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>

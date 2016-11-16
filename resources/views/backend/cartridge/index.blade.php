@@ -26,23 +26,24 @@
                 </tr>
                 <thead>
                 <tbody>
+
                 @foreach($catridges as $key => $catridge)
                     <tr>
                         <td>
                             {{ ++$key }}
                         </td>
                         <td><a href="{{ action('CatridgeController@show', [$catridge->id]) }}">{{ $catridge->current_id }}</a></td>
-                        <td>{{ $catridge->manifacture->manifacture }} ({{  $catridge->model }})</td>
-                        <td>{{ $catridge->type->type }}</td>
+                        <td>{{ $catridge->manifacture }} ({{  $catridge->model }})</td>
+                        <td>{{ $catridge->type }}</td>
                         <td>{{ $catridge->location }}</td>
-                        <td>{{ $catridge->master->master_name }}</td>
+                        <td>{{ $catridge->master_name }}</td>
                         <td>{{ $catridge->auxiliary }}</td>
                         <td>
                             <a href={{ 'cartridge/' . $catridge->id . '/edit' }}><i class="glyphicon glyphicon-edit"></i></a>
                         </td>
-
                     </tr>
                 @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -52,6 +53,11 @@
             </div>
             <div class="btn-group">
                 <a href="cartridge/service" type="button" class="btn btn-primary">Службы</a>
+            </div>
+            <br />
+            <br />
+            <div class="btn-group">
+                <a href="cartridge/models" type="button" class="btn btn-primary">Модели</a>
             </div>
         </div>
     </div>
